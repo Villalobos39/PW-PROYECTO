@@ -7,7 +7,7 @@
 #### :date: PERIODO: ENERO - JUNIO  2021  
 ####   :books: SEMESTRE:  8 VO 
 
-##### :balloon:  PINK TEAM  :fish_cake:
+#### :balloon:  PINK TEAM  :fish_cake:
 
 ##### :mortar_board:  INTEGRANTES: 
 
