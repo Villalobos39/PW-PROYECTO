@@ -1,0 +1,32 @@
+{% extends "base/base.html" %}
+<!-- /. Aqui va el titulo de la pagina.... si lo dejas vacio no aparecera nada -->
+{% block title%}Reporte{% endblock %}
+<!-- /. Aqui va el contenido.... si lo dejas vacio no aparecera nada -->
+{% block content%}
+<h2>Pagina donde el docente selecciona un alumno e imprime un reporte para los padres o tutores</h2>
+{% endblock %}
+<!-- /. Aqui van los botones.... si lo dejas vacio no aparecera nada -->
+
+{% block buttons%}
+
+<li>
+    <a href="{% url 'home:home_docente' %}"><i class="fa fa-qrcode "></i>Inicio</a>
+</li>
+<li>
+    <a href="{% url 'home:grupo_docente' %}"><i class="fa fa-bar-chart-o"></i>Grupo</a>
+</li>
+<li>
+    <a href="{% url 'home:reporte_docente' %}"><i class="fa fa-qrcode "></i>Generar reporte</a>
+</li>
+<li>
+    <a href="{% url 'home:historial_docente' %}"><i class="fa fa-bar-chart-o"></i>Historial</a>
+</li>
+<li>
+    <a href="{% url 'home:index' %}"><i class="fa fa-qrcode "></i>Salir del sistema</a>
+</li>
+
+{% endblock %}
+<!-- /. Aqui va el boton de logout.... si lo dejas vacio no aparecera nada -->
+{% block logout%}{% endblock %}
+<!-- /. Aqui va el aviso de privacidad.... si lo dejas vacio no aparecera nada -->
+{% block privacy%}Aqui va el aviso de privacidad...{% endblock %}

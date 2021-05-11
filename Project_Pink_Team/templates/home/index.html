@@ -1,0 +1,24 @@
+{% extends "base/base.html" %}
+
+<!-- /. Aqui va el titulo de la pagina.... si lo dejas vacio no aparecera nada -->
+{% block title%}Login{% endblock %}
+
+
+
+<!-- /. Aqui va el contenido.... si lo dejas vacio no aparecera nada -->
+{% block content%}
+<h2>Pagina inicial aqui va un login</h2>
+<!-- /. Los siguientes tres botones solo estan aqui por motivos demostrativos.... -->
+<h2><a href="{% url 'home:home_alumno' %}">Inicio alumno</a></h2>
+<h2><a href="{% url 'home:home_docente' %}">Inicio docente</a></h2>
+<h2><a href="{% url 'home:home_administrador' %}">Inicio administrador</a></h2>
+{% endblock %}
+
+
+
+<!-- /. Aqui van los botones.... si lo dejas vacio no aparecera nada -->
+{% block buttons%}{% endblock %}
+<!-- /. Aqui va el boton de logout.... si lo dejas vacio no aparecera nada -->
+{% block logout%}{% endblock %}
+<!-- /. Aqui va el aviso de privacidad.... si lo dejas vacio no aparecera nada -->
+{% block privacy%}Aqui va el aviso de privacidad...{% endblock %}
