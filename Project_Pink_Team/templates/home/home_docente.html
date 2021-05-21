@@ -21,9 +21,9 @@
 <li>
     <a href="{% url 'home:historial_docente' %}"><i class="fa fa-bar-chart-o"></i>Historial</a>
 </li>
-<li>
-    <a href="{% url 'home:index' %}"><i class="fa fa-qrcode "></i>Salir del sistema</a>
-</li>
+<span class="logout-spn">                             
+        <a href="{% url 'home:logout' %}"><i class="fa fa-qrcode "></i>Salir del sistema</a>
+</span>
 
 {% endblock %}
 <!-- /. Aqui va el boton de logout.... si lo dejas vacio no aparecera nada -->

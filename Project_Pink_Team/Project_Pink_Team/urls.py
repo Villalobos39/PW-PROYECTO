@@ -16,7 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from django.conf.urls import handler404
+#
+from home.views import Error404View
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include("home.urls")),
 ]
+
+#Agregamos una funcion para cuando la pagina no es encontrada
+handler404 = Error404View.as_view()

@@ -1,0 +1,60 @@
+{% extends 'base/base.html' %}
+#
+{% block title %}Login{% endblock title %}
+
+{% block content %}
+
+<div class="container">
+
+    <!--- Outer Row-->
+    <div class="row justify-content-center">
+
+        <div class="col-xl-10 col-lg-12 col-md-9">
+
+             <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                            {% comment %} <div class="col-lg-6 d-none d-lg-block bg-login-image"></div> {% endcomment %}
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">¡Bienvenido de Nuevo!</h1>
+                                        {% if request.user.is_authenticated %}
+
+                                        {% else %}
+                                                <small class ="text-danger">
+                                                {% if form.errors %}
+                                                    error
+                                                {% endif %}
+                                                </small> 
+                                            </div>
+                                                <form class="user" method="POST">
+                                                    {% csrf_token %} 
+                                                    {{ form.as_p }}
+                                                
+                                                <button type="submit" class= "btn btn-primary btn-user btn-black">Inciar Sesión</button>
+                                                <hr>
+                                                </form>
+                                                <hr>
+                                                <dir class="text-center">
+                                                    <a class="small" href="forgot-password.html">¿Olvidaste tu contraseña?</a>
+                                                </div>
+                                                <div class"text-center">
+                                                <a class="small" href="{% url 'home:signup' %}">Crear cuenta</a>
+                                                </div>
+                                        {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+{% endblock content %}

@@ -20,7 +20,9 @@
     <a href="{% url 'home:historial_administrador' %}"><i class="fa fa-qrcode "></i>Historial de actividad</a>
 </li>
 <li>
-    <a href="{% url 'home:index' %}"><i class="fa fa-qrcode "></i>Salir del sistema</a>
+    <span class="logout-spn">                             
+        <a href="{% url 'home:logout' %}"><i class="fa fa-qrcode "></i>Salir del sistema</a>
+    </span>
 </li>
 
 {% endblock %}
