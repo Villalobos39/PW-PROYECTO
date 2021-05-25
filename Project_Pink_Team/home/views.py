@@ -7,10 +7,12 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required, permission_required
 from django.views.generic.base import TemplateView
-from .models import User, Usuario , Materia_Actual, Historial_Materias, Escuela
+from .models import User, Usuario , Materia_Actual, Historial_Materias, Escuela, Grupo, Periodo
 from .forms import CustomUserCreationForm
 from django.http import HttpResponse
 from django.core import serializers
+
+from .forms import UpdateUserForm, CreateUserForm
 #from django.shortcuts import get_object_or_404
 #from django.conf import settings
 # Create your views here.
@@ -55,7 +57,7 @@ def Historial_Docente(request):
 
 
 
-################          Vista inicial de administrador
+################          Vista inicial de administrador     #############################
 @permission_required('home.is_admin')
 def Home_Administrador(request):
     return render(request, 'home/home_administrador.html')
@@ -70,6 +72,34 @@ def Consulta_Administrador(request):
 def Historial_Administrador(request):
     return render(request, 'home/historial_administrador.html')
 
+############################Vistas de la tabla User#########################################
+class VistaTablaUser(generic.ListView):
+    template_name = "home/tabla_user.html"
+    model = User
+
+class VistaDetalleUser(generic.DetailView):
+    template_name = "home/detalle_user.html"
+    model = User
+
+class VistaUpdateUser(generic.UpdateView):
+    template_name = "home/update_user.html"
+    model = User
+    form_class = UpdateUserForm
+    success_url = reverse_lazy("home:tabla_user")
+
+class VistaDeleteUser(generic.DeleteView):
+    template_name = "home/delete_user.html"
+    model = User
+    success_url = reverse_lazy("home:tabla_user")
+
+class VistaCreateUser(generic.CreateView):
+    template_name = "home/create_user.html"
+    model = User
+    form_class = CreateUserForm
+    success_url = reverse_lazy("home:consulta_administrador")
+###########################################################################################
+
+###########################################################################################
 
 #Funcion para crear nuevo usuario
 class Signup(generic.CreateView):

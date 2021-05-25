@@ -3,7 +3,13 @@
 {% block title%}Inicio{% endblock %}
 <!-- /. Aqui va el contenido.... si lo dejas vacio no aparecera nada -->
 {% block content%}
-<h2>Datos admin</h2>
+<form method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit">Submit</button>
+    <button type="reset">Cancel</button>
+
+</form>
 {% endblock %}
 <!-- /. Aqui van los botones.... si lo dejas vacio no aparecera nada -->
 

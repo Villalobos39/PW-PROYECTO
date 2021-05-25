@@ -3,8 +3,46 @@
 {% block title%}Consulta{% endblock %}
 <!-- /. Aqui va el contenido.... si lo dejas vacio no aparecera nada -->
 {% block content%}
-<h2>Pagina donde el administrador puede seleccionar una tabla, revisarla y actualizarla</h2>
-<h2>Requerira de mas URLs.....</h2>
+<table class="table">
+    <th>Nombre</th>
+    <th>Agrergar</th>
+    <th>Detalles</th>
+    <tr>
+        <td>User</td>
+        <td><a href="{% url 'home:create_user' %}">Agregar</a></td>
+        <td><a href="{% url 'home:tabla_user' %}">Detalles</a></td>
+    </tr>
+    <tr>
+        <td>Grupo</td>
+        <td><a href="#">Agregar</a></td>
+        <td><a href="#">Detalles</a></td>
+    </tr>
+    <tr>
+        <td>Usuario</td>
+        <td><a href="#">Agregar</a></td>
+        <td><a href="#">Detalles</a></td>
+    </tr>
+    <tr>
+        <td>Escuela</td>
+        <td><a href="#">Agregar</a></td>
+        <td><a href="#">Detalles</a></td>
+    </tr>
+    <tr>
+        <td>Materia_Actual</td>
+        <td><a href="#">Agregar</a></td>
+        <td><a href="#">Detalles</a></td>
+    </tr>
+    <tr>
+        <td>Periodo</td>
+        <td><a href="#">Agregar</a></td>
+        <td><a href="#">Detalles</a></td>
+    </tr>
+    <tr>
+        <td>Historial_Materias</td>
+        <td><a href="#">Agregar</a></td>
+        <td><a href="#">Detalles</a></td>
+    </tr>
+</table>
 {% endblock %}
 <!-- /. Aqui van los botones.... si lo dejas vacio no aparecera nada -->
 

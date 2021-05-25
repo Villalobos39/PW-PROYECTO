@@ -15,6 +15,12 @@ urlpatterns = [
     path('home_administrador/', views.Home_Administrador, name="home_administrador"),
     path('historial_administrador/', views.Historial_Administrador, name="historial_administrador"),
     path('consulta_administrador/', views.Consulta_Administrador, name="consulta_administrador"),
+    #URL administrador
+    path('tabla_user/', permission_required('home.is_admin')(views.VistaTablaUser.as_view()), name="tabla_user"),
+    path('detalle_user/<int:pk>/', permission_required('home.is_admin')(views.VistaDetalleUser.as_view()), name="detalle_user"),
+    path('update_user/<int:pk>/', permission_required('home.is_admin')(views.VistaUpdateUser.as_view()), name="update_user"),
+    path('delete_user/<int:pk>/', permission_required('home.is_admin')(views.VistaDeleteUser.as_view()), name="delete_user"),
+    path('create_user/', permission_required('home.is_admin')(views.VistaCreateUser.as_view()), name="create_user"),
 
     # Url para inicio y creacion de sesion
     path('login/', auth_views.LoginView.as_view(), name = "login"),

@@ -3,7 +3,19 @@
 {% block title%}Inicio{% endblock %}
 <!-- /. Aqui va el contenido.... si lo dejas vacio no aparecera nada -->
 {% block content%}
-<h2>Datos admin</h2>
+<table class="table">
+    <th>Nombre</th>
+    <th>Detalle</th>
+    <tr>
+        <td>ID</td>
+        <td>{{ object.id }}</td>
+    </tr>
+    <tr>
+        <td>is_superuser</td>
+        <td>{{ object.is_superuser }}</td>
+    </tr>
+</table>
+                    
 {% endblock %}
 <!-- /. Aqui van los botones.... si lo dejas vacio no aparecera nada -->
 

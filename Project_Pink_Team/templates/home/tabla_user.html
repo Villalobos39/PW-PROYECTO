@@ -3,7 +3,22 @@
 {% block title%}Inicio{% endblock %}
 <!-- /. Aqui va el contenido.... si lo dejas vacio no aparecera nada -->
 {% block content%}
-<h2>Datos admin</h2>
+<table class="table">
+    <th>ID</th>
+    <th>Nombre</th>
+    <th></th>
+    <th></th>
+    <th></th>
+    {% for obj in object_list %}
+    <tr>
+        <td>{{ obj.id }}</td>
+        <td>{{ obj.username}}</td>
+        <td><a href="{% url 'home:detalle_user' obj.pk %}">Detail</a></td>
+        <td><a href="{% url 'home:update_user' obj.pk %}">Update</a></td>
+        <td><a href="{% url 'home:delete_user' obj.pk %}">Delete</a></td>
+    </tr>
+    {% endfor %}
+</table>
 {% endblock %}
 <!-- /. Aqui van los botones.... si lo dejas vacio no aparecera nada -->
 
