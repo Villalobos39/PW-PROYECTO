@@ -18,74 +18,87 @@
 </head>
 
 <body>
-
-
-
     <div id="wrapper">
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="adjust-nav">
-                <div class="navbar-header">
+                <div class="navbar-header">                   
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>                                  
+                        <span class="icon-bar"></span>    
+                        <span class="icon-bar"></span>                                
                     </button>
-                    <a class="navbar-brand" href="#">
-                        <img src="{% static 'assets/img/logo.png' %}" height=70/>
-                    </a>
-                </div>
-                {% block logout %}
-                <span class="logout-spn">
-                    <a href="#" style="color:#fff;">LOGOUT</a>
-                </span>
-                {% endblock %}
+                </div> 
+                    <!--ESTA TABLA DIVIDE EL LOGO Y EL TITULO -->   
+            <div>
+                <a class="navbar-left" href="{% url 'home:casa' %}">
+                    <img src="{% static 'assets/img/LOGOESC.png' %}" height=90> 
+                </a>   
+            </div>   
+          
+            <div class="navbar-search text-center" style="color:rgb(255, 255, 255)">                 
+                <h3><B> SISTEMA EDUCATIVO NACIONAL</B></h3>
+                <h4><B> INSTITUTO DE SERVICIOS EDUCATIVOS Y PEDAGÓGICOS DE BAJA CALIFORNIA </B></h4>
+                <h5><B> EDUCACIÓN PRIMARIA  </B></h5>
+                <br>                               
+            </div>
+                <!-- {% block logout %}
+                 <span class="logout-spn"> 
+                    <table>
+                        <br> <td WIDTH="30" > </td> 
+                        <th>
+                            <a class="btn btn-primary" href="{% url 'home:logout' %}" height=60 align="left" >LOGOUT</a>       
+                        </th>              
+                    </table>
+                 </span> 
+                {% endblock %} -->
             </div>
         </div>
         <!-- /. NAV TOP  -->
+        <BR> <BR>
         <nav class="navbar-default navbar-side" role="navigation">
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
 
+                    <!--- Si no ha iniciado sesion, no podra ver los botones -->
+                    {% if request.user.is_authenticated  %}
                     {% block buttons %}
                     <li>
-                        <a href="index.html"><i class="fa fa-desktop "></i>Home <span
-                                class="badge">Included</span></a>
+                        <a href="{% url 'home:casa' %}"><i class=""></i> <span
+                                class="badge"></span></a>
                     </li>
-
-
                     <li>
-                        <a href="ui.html"><i class="fa fa-table "></i>UI Elements <span
-                                class="badge">Included</span></a>
+                        <a href="{% url 'home:casa' %}"><i class=""></i><span
+                                class="badge"></span></a>
                     </li>
                     <li class="active-link">
-                        <a href="blank.html"><i class="fa fa-edit "></i>Blank Page <span
-                                class="badge">Included</span></a>
-                    </li>
-
-
-
-                    <li>
-                        <a href="#"><i class="fa fa-qrcode "></i>My Link One</a>
+                        <a href="{% url 'home:casa' %}"><i class=""></i><span
+                                class="badge"></span></a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-bar-chart-o"></i>My Link Two</a>
+                        <a href="{% url 'home:casa' %}"><i class=""></i></a>
+                    </li>
+                    <li>
+                        <a href="{% url 'home:casa' %}"><i class=""></i></a>
                     </li>
 
                     <li>
-                        <a href="#"><i class="fa fa-edit "></i>My Link Three </a>
+                        <a href="{% url 'home:casa' %}"><i class=""></i></a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-table "></i>My Link Four</a>
+                        <a href="{% url 'home:casa' %}"><i class=""></i></a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-edit "></i>My Link Five </a>
+                        <a href="{% url 'home:casa' %}"><i class=""></i></a>
                     </li>
                     {% endblock %}
+                    {% else %}
+                    <h2></h2>
+                    {% endif %}
                 </ul>
             </div>
-
         </nav>
         <!-- /. NAV SIDE  -->
+        <BR> 
         <div id="page-wrapper">
             <div id="page-inner">
                 <div class="row">
@@ -105,14 +118,16 @@
         <!-- /. PAGE WRAPPER  -->
     </div>
     <div class="footer">
-
-
         <div class="row">
             <div class="col-lg-12">
                 {% block privacy %}
-                &copy; 2014 yourdomain.com | Design by: <a href="http://binarytheme.com" style="color:#fff;"
-                    target="_blank">www.binarytheme.com</a>
-                    {% endblock %}
+                <H5 align="center">
+                    PARA CUALQUIER ACLARACIÓN O DUDA ACERCA DE LA AUTENTIFICACIÓN DE LA PÁGINA, 
+                    <BR> INFORMACIÓN DEL PRESENTE O CUALQUIER 
+                    INCONVENIENTE CON ESTA PÁGINA WEB, FAVOR DE COMUNICARSE AL ÁREA DE REGISTRO DE LA ADMINISTRACIÓN ESCOLAR. 
+                    <br>PARA MÁS INFORMACIÓN COMUNICARSE AL TEL. 6642015219 O AL CORREO: CONTROLESCOLAR@EDUCACIONBC.EDU.MX 
+                    </H5>
+                {% endblock %}
             </div>
         </div>
     </div>
