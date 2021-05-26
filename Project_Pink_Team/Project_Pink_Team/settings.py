@@ -76,7 +76,11 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'database_pink1',
+<<<<<<< Updated upstream
         'USER': 'mydatabaseuser',
+=======
+        'USER': 'mydatabaseuser1',
+>>>>>>> Stashed changes
         'PASSWORD': 'mypassword',
         'HOST': '127.0.0.1',
         'PORT': '5432',

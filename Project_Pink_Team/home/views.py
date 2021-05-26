@@ -13,6 +13,15 @@ from django.http import HttpResponse
 from django.core import serializers
 
 from .forms import UpdateUserForm, CreateUserForm
+<<<<<<< Updated upstream
+=======
+from .forms import UpdateGrupoForm, CreateGrupoForm
+from .forms import UpdateUsuarioForm, CreateUsuarioForm
+from .forms import UpdateEscuelaForm, CreateEscuelaForm
+from .forms import UpdateMateria_ActualForm, CreateMateria_ActualForm
+from .forms import UpdatePeriodoForm, CreatePeriodoForm
+from .forms import UpdateHistorial_MateriasForm, CreateHistorial_MateriasForm
+>>>>>>> Stashed changes
 #from django.shortcuts import get_object_or_404
 #from django.conf import settings
 # Create your views here.
@@ -91,6 +100,7 @@ class VistaDeleteUser(generic.DeleteView):
     template_name = "home/delete_user.html"
     model = User
     success_url = reverse_lazy("home:tabla_user")
+<<<<<<< Updated upstream
 
 class VistaCreateUser(generic.CreateView):
     template_name = "home/create_user.html"
@@ -100,6 +110,181 @@ class VistaCreateUser(generic.CreateView):
 ###########################################################################################
 
 ###########################################################################################
+=======
+
+class VistaCreateUser(generic.CreateView):
+    template_name = "home/create_user.html"
+    model = User
+    form_class = CreateUserForm
+    success_url = reverse_lazy("home:consulta_administrador")
+###########################################################################################GrupoAdmin
+class VistaTablaGrupo(generic.ListView):
+    template_name = "home/tabla_grupo.html"
+    model = Grupo
+
+class VistaDetalleGrupo(generic.DetailView):
+    template_name = "home/detalle_grupo.html"
+    model = Grupo
+
+class VistaUpdateGrupo(generic.UpdateView):
+    template_name = "home/update_grupo.html"
+    model = Grupo
+    form_class = UpdateGrupoForm
+    success_url = reverse_lazy("home:tabla_grupo")
+
+class VistaDeleteGrupo(generic.DeleteView):
+    template_name = "home/delete_grupo.html"
+    model = Grupo
+    success_url = reverse_lazy("home:tabla_grupo")
+
+class VistaCreateGrupo(generic.CreateView):
+    template_name = "home/create_grupo.html"
+    model = Grupo
+    form_class = CreateGrupoForm
+    success_url = reverse_lazy("home:consulta_administrador")
+###########################################################################################UsuarioAdmin
+class VistaTablaUsuario(generic.ListView):
+    template_name = "home/tabla_usuario.html"
+    model = Usuario
+
+class VistaDetalleUsuario(generic.DetailView):
+    template_name = "home/detalle_usuario.html"
+    model = Usuario
+
+class VistaUpdateUsuario(generic.UpdateView):
+    template_name = "home/update_usuario.html"
+    model = Usuario
+    form_class = UpdateUsuarioForm
+    success_url = reverse_lazy("home:tabla_usuario")
+
+class VistaDeleteUsuario(generic.DeleteView):
+    template_name = "home/delete_usuario.html"
+    model = Usuario
+    success_url = reverse_lazy("home:tabla_usuario")
+
+class VistaCreateUsuario(generic.CreateView):
+    template_name = "home/create_usuario.html"
+    model = Usuario
+    form_class = CreateUsuarioForm
+    success_url = reverse_lazy("home:consulta_administrador")
+
+###########################################################################################EscuelaAdmin
+class VistaTablaEscuela(generic.ListView):
+    template_name = "home/tabla_escuela.html"
+    model = Escuela
+
+class VistaDetalleEscuela(generic.DetailView):
+    template_name = "home/detalle_escuela.html"
+    model = Escuela
+
+class VistaUpdateEscuela(generic.UpdateView):
+    template_name = "home/update_escuela.html"
+    model = Escuela
+    form_class = UpdateEscuelaForm
+    success_url = reverse_lazy("home:tabla_escuela")
+
+class VistaDeleteEscuela(generic.DeleteView):
+    template_name = "home/delete_Escuela.html"
+    model = Escuela
+    success_url = reverse_lazy("home:tabla_escuela")
+
+class VistaCreateEscuela(generic.CreateView):
+    template_name = "home/create_escuela.html"
+    model = Escuela
+    form_class = CreateEscuelaForm
+    success_url = reverse_lazy("home:consulta_administrador")
+
+###########################################################################################Materia_ActualAdmin
+class VistaTablaMateria_Actual(generic.ListView):
+    template_name = "home/tabla_materia_Actual.html"
+    model = Materia_Actual
+
+class VistaDetalleMateria_Actual(generic.DetailView):
+    template_name = "home/detalle_materia_Actual.html"
+    model = Materia_Actual
+
+class VistaUpdateMateria_Actual(generic.UpdateView):
+    template_name = "home/update_materia_Actual.html"
+    model = Materia_Actual
+    form_class = UpdateMateria_ActualForm
+    success_url = reverse_lazy("home:tabla_materia_Actual")
+
+class VistaDeleteMateria_Actual(generic.DeleteView):
+    template_name = "home/delete_materia_Actual.html"
+    model = Materia_Actual
+    success_url = reverse_lazy("home:tabla_materia_Actual")
+
+class VistaCreateMateria_Actual(generic.CreateView):
+    template_name = "home/create_materia_Actual.html"
+    model = Materia_Actual
+    form_class = CreateMateria_ActualForm
+    success_url = reverse_lazy("home:consulta_administrador")
+
+
+
+###########################################################################################PeriodoAdmin
+
+
+class VistaTablaPeriodo(generic.ListView):
+    template_name = "home/tabla_periodo.html"
+    model = Periodo
+
+class VistaDetallePeriodo(generic.DetailView):
+    template_name = "home/detalle_periodo.html"
+    model = Periodo
+
+class VistaUpdatePeriodo(generic.UpdateView):
+    template_name = "home/update_periodo.html"
+    model = Periodo
+    form_class = UpdatePeriodoForm
+    success_url = reverse_lazy("home:tabla_periodo")
+
+class VistaDeletePeriodo(generic.DeleteView):
+    template_name = "home/delete_periodo.html"
+    model = Periodo
+    success_url = reverse_lazy("home:tabla_periodo")
+
+class VistaCreatePeriodo(generic.CreateView):
+    template_name = "home/create_periodo.html"
+    model = Periodo
+    form_class = CreatePeriodoForm
+    success_url = reverse_lazy("home:consulta_administrador")
+
+###########################################################################################historial_MateriasAdmin
+
+
+class VistaTablaHistorial_Materias(generic.ListView):
+    template_name = "home/tabla_historial_Materias.html"
+    model = Historial_Materias
+
+class VistaDetalleHistorial_Materias(generic.DetailView):
+    template_name = "home/detalle_historial_Materias.html"
+    model = Historial_Materias
+
+class VistaUpdateHistorial_Materias(generic.UpdateView):
+    template_name = "home/update_historial_Materias.html"
+    model = Historial_Materias
+    form_class = UpdateHistorial_MateriasForm
+    success_url = reverse_lazy("home:tabla_historial_Materias")
+
+class VistaDeleteHistorial_Materias(generic.DeleteView):
+    template_name = "home/delete_historial_Materias.html"
+    model = Historial_Materias
+    success_url = reverse_lazy("home:tabla_historial_Materias")
+
+class VistaCreateHistorial_Materias(generic.CreateView):
+    template_name = "home/create_historial_Materias.html"
+    model = Historial_Materias
+    form_class = CreateHistorial_MateriasForm
+    success_url = reverse_lazy("home:consulta_administrador")
+
+
+
+
+
+
+
+>>>>>>> Stashed changes
 
 #Funcion para crear nuevo usuario
 class Signup(generic.CreateView):

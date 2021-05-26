@@ -3,26 +3,47 @@
 {% block title%}Inicio{% endblock %}
 <!-- /. Aqui va el contenido.... si lo dejas vacio no aparecera nada -->
 {% block content%}
-<<<<<<< Updated upstream
-<h2>Datos admin</h2>
-=======
-<div id = “mainContent”>
-
-    <h1>Bienvenido <u> <font face="Comic Sans MS,arial,verdana">{{ user.username}}</font></u>  , espero que se encuentre bastante bien</h1>
-    <h3>Aqui estan sus datos personales:</h3>
-    <p style="background: #bdf0fa; color: #0c92ac; font-weight: bold; padding: 15px; border: 2px solid #abecf9; border-radius: 10px;">
-      Tienes Todos los permisos: {{user.is_superuser}} <br> Nombre:{{user.first_name}} <br>  Apellido:{{user.last_name}}  <br>email:{{user.email}}</p>
-  </div>
-  
-  <div class="container-fluid" style="background-color: #F0F2F5;">
-  <h6><i>Orgullosamente ubicados</i></h6>
-  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.485178647722!2d-116.98746445217941!3d32.52895139051233!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80d94875c00b2a3d%3A0x281526cf22a3e2cc!2sInstituto%20Tecnol%C3%B3gico%20de%20Tijuana!5e0!3m2!1ses!2smx!4v1620243861178!5m2!1ses!2smx" width="900" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-  </div>
-  
-  
-  
-  
->>>>>>> Stashed changes
+<table class="table">
+    <th>Nombre</th>
+    <th>Detalle</th>
+    <tr>
+        <td>ID</td>
+        <td>{{ object.id }}</td>
+    </tr>
+    <tr>
+        <td>nombre de la materia</td>
+        <td>{{ object.nombre_materia }}</td>
+    </tr>
+    <tr>
+        <td>horario</td>
+        <td>{{ object.horario }}</td>
+    </tr>
+    <tr>
+        <td>B1</td>
+        <td>{{ object.b1 }}</td>
+    </tr>
+    <tr>
+        <td>B2</td>
+        <td>{{ object.b2 }}</td>
+    </tr>
+    <tr>
+        <td>B3</td>
+        <td>{{ object.b3 }}</td>
+    </tr>
+    <tr>
+        <td>B5</td>
+        <td>{{ object.b5 }}</td>
+    </tr>
+    <tr>
+        <td>Promedio</td>
+        <td>{{ object.promedio }}</td>
+    </tr>
+    <tr>
+        <td>alumno_id</td>
+        <td>{{ object.alumno_id}}</td>
+    </tr>
+</table>
+                    
 {% endblock %}
 <!-- /. Aqui van los botones.... si lo dejas vacio no aparecera nada -->
 

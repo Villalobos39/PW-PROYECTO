@@ -14,6 +14,7 @@
     </tr>
     <tr>
         <td>Grupo</td>
+<<<<<<< Updated upstream
         <td><a href="#">Agregar</a></td>
         <td><a href="#">Detalles</a></td>
     </tr>
@@ -41,6 +42,35 @@
         <td>Historial_Materias</td>
         <td><a href="#">Agregar</a></td>
         <td><a href="#">Detalles</a></td>
+=======
+        <td><a href="{% url 'home:create_grupo' %}">Agregar</a></td>
+        <td><a href="{% url 'home:tabla_grupo' %}">Detalles</a></td>
+    </tr>
+    <tr>
+        <td>Usuario</td>
+        <td><a href="{% url 'home:create_usuario' %}">Agregar</a></td>
+        <td><a href="{% url 'home:tabla_usuario' %}">Detalles</a></td>
+    </tr>
+    <tr>
+        <td>Escuela</td>
+        <td><a href="{% url 'home:create_escuela' %}">Agregar</a></td>
+        <td><a href="{% url 'home:tabla_escuela' %}">Detalles</a></td>
+    </tr>
+    <tr>
+        <td>Materia_Actual</td>
+        <td><a href="{% url 'home:create_materia_Actual' %}">Agregar</a></td>
+        <td><a href="{% url 'home:tabla_materia_Actual' %}">Detalles</a></td>
+    </tr>
+    <tr>
+        <td>Periodo</td>
+        <td><a href="{% url 'home:create_periodo' %}">Agregar</a></td>
+        <td><a href="{% url 'home:tabla_periodo' %}">Detalles</a></td>
+    </tr>
+    <tr>
+        <td>Historial_Materias</td>
+        <td><a href="{% url 'home:create_historial_Materias' %}">Agregar</a></td>
+        <td><a href="{% url 'home:tabla_historial_Materias' %}">Detalles</a></td>
+>>>>>>> Stashed changes
     </tr>
 </table>
 {% endblock %}
