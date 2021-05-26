@@ -3,8 +3,51 @@
 {% block title%}Consulta{% endblock %}
 <!-- /. Aqui va el contenido.... si lo dejas vacio no aparecera nada -->
 {% block content%}
+<<<<<<< Updated upstream
 <h2>Pagina donde el administrador puede seleccionar una tabla, revisarla y actualizarla</h2>
 <h2>Requerira de mas URLs.....</h2>
+=======
+<table class="table">
+    <th>Nombre</th>
+    <th>Agrergar</th>
+    <th>Detalles</th>
+    <tr>
+        <td>User</td>
+        <td><a href="{% url 'home:create_user' %}">Agregar</a></td>
+        <td><a href="{% url 'home:tabla_user' %}">Detalles</a></td>
+    </tr>
+    <tr>
+        <td>Grupo</td>
+        <td><a href="{% url 'home:create_grupo' %}">Agregar</a></td>
+        <td><a href="{% url 'home:tabla_grupo' %}">Detalles</a></td>
+    </tr>
+    <tr>
+        <td>Usuario</td>
+        <td><a href="{% url 'home:create_usuario' %}">Agregar</a></td>
+        <td><a href="{% url 'home:tabla_usuario' %}">Detalles</a></td>
+    </tr>
+    <tr>
+        <td>Escuela</td>
+        <td><a href="{% url 'home:create_escuela' %}">Agregar</a></td>
+        <td><a href="{% url 'home:tabla_escuela' %}">Detalles</a></td>
+    </tr>
+    <tr>
+        <td>Materia_Actual</td>
+        <td><a href="{% url 'home:create_materia_Actual' %}">Agregar</a></td>
+        <td><a href="{% url 'home:tabla_materia_Actual' %}">Detalles</a></td>
+    </tr>
+    <tr>
+        <td>Periodo</td>
+        <td><a href="{% url 'home:create_periodo' %}">Agregar</a></td>
+        <td><a href="{% url 'home:tabla_periodo' %}">Detalles</a></td>
+    </tr>
+    <tr>
+        <td>Historial_Materias</td>
+        <td><a href="{% url 'home:create_historial_Materias' %}">Agregar</a></td>
+        <td><a href="{% url 'home:tabla_historial_Materias' %}">Detalles</a></td>
+    </tr>
+</table>
+>>>>>>> Stashed changes
 {% endblock %}
 <!-- /. Aqui van los botones.... si lo dejas vacio no aparecera nada -->
 
