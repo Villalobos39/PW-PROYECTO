@@ -1,0 +1,15 @@
+{% extends "base/base.html" %}
+
+{% block title %}PENDIENTE{% endblock %}
+
+{% block content %}
+
+    {% if request.user.is_authenticated %}
+        <h2>Esperar a que su cuenta sea verificada | {{ user }}</h2>
+    {% else %}
+
+        <a href ="{% url 'home:login' %}">Login Please</a>
+
+    {% endif %}
+
+{% endblock %}

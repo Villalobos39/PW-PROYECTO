@@ -1,0 +1,92 @@
+﻿{% load static %}
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title%}Pagina{% endblock %}</title>
+    
+    <!-- BOOTSTRAP STYLES-->
+    <link href="{% static 'assets/css/bootstrap.css' %}" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <link href="{% static 'assets/css/font-awesome.css' %}" rel="stylesheet" />
+    <!-- CUSTOM STYLES-->
+    <link href="{% static 'assets/css/custom.css' %}" rel="stylesheet" />
+    <!-- GOOGLE FONTS-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+</head>
+
+<body>
+    <div id="wrapper">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="adjust-nav">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">
+                        <img src="{% static 'assets/img/logo.png' %}" height=70/>
+                    </a>
+                </div>
+                {% block logout %}
+                <span class="logout-spn">
+                    <a class="btn btn-primary" href="{% url 'home:logout' %}">LOGOUT</a>
+                </span>
+                {% endblock %}
+            </div>
+        </div>
+        <!-- /. NAV TOP  -->
+        <!-- /. NAV SIDE  -->
+        
+        <div id="page-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    {% block content %}
+                        <html lang="en">
+                        <head>
+                            <meta charset="UTF-8!">  
+                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                            <title>Document</title>
+                        </head>
+                        <body>                              
+                            <H1 align="center">Pagina no encontrada</h1>                                
+                                <div align="center"><img src="https://media.tenor.com/images/b276eb1262c2ae17a7d94929051d7a9d/tenor.gif" width="300" height="300"/></div>
+                            <a href="{% url 'home:index' %}"><H1 align="center">&larr; Regresar a Inicio</h1></a>
+                        </body>
+                        </html>
+                    {% endblock %}
+                </div>
+            </div>
+                <!-- /. ROW  -->    <!-- /. ROW  -->
+        </div>
+            <!-- /. PAGE INNER  -->
+        <!-- /. PAGE WRAPPER  -->
+    <div class="footer">
+        <div class="row">
+            <div class="col-lg-12">
+                {% block privacy %}
+                &copy; 2014 yourdomain.com | Design by: <a href="http://binarytheme.com" style="color:#fff;"
+                    target="_blank">www.binarytheme.com</a>
+                    {% endblock %}
+            </div>
+        </div>
+    </div>
+
+
+    <!-- /. WRAPPER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+
+
+</body>
+
+</html>
