@@ -200,7 +200,6 @@ class Historial_Materias(models.Model):
     alumno = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     nombre_materia=models.CharField(max_length=50, choices = MS_MATERIAS, default="Pendiente")
     horario=models.CharField(max_length=50, choices = MS_HORARIOS, default="Pendiente")
-    horario=models.CharField(max_length=50)
     b1=models.FloatField(default=0.0)
     b2=models.FloatField(default=0.0)
     b3=models.FloatField(default=0.0)
