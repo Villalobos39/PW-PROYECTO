@@ -212,4 +212,4 @@ class Historial_Materias(models.Model):
 
     def __str__(self):
         return self.nombre_materia
->>>>>>> Stashed changes
+
