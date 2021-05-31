@@ -1,62 +1,29 @@
-{% extends 'base/base.html' %}
+{% extends 'base/base2.html' %}
 {% block title %}Login{% endblock title %}
 
 {% block content %}
-
-<div class="container">
-
-    <!--- Outer Row-->
-    <div class="row justify-content-center">
-
-        <div class="col-xl-50 col-lg-12 col-md-9" >
-
-             <div class="card o-hidden border-5 shadow-lg my-9">
-                    <div class="card-body p-10">
-                        <!-- Nested Row within Card Body -->
-                        <div class="row justify-content-center">
-                            <!-- {% comment %} <div class="col-lg-6 d-none d-lg-block bg-login-image"></div> {% endcomment %} -->
-                            <div class="col-lg-10">
-                                <div class="p-10 >                               
-                                    <h1 class="h4 text-gray-900 mb-4"> ¡Bienvenido de Nuevo!</h1>
-                                    {% if request.user.is_authenticated %}
-                                    {% else %}
-                                        <div>
-                                            <small class ="text-danger">
-                                            {% if form.errors %}
-                                                error
-                                            {% endif %}
-                                            </small> 
-                                        </div>
-                                        <p>
-                                            <form class="user" method="POST">
-                                                {% csrf_token %} 
-                                                {{ form.as_p }}
-                                            
-                                            <button type="submit" class= "btn btn-primary btn-user btn-black" >Inciar Sesión</button>
-                                            <hr>
-                                            </form>
-                                            <hr>
-                                        </p>
-                                
-                                        <div class="text-center">
-                                            <a class="small " href="forgot-password.html">¿Olvidaste tu contraseña?</a>
-                                        </div>
-                                        
-                                        <div class = "text-center">
-                                        <a class="small" href="{% url 'home:signup' %}">Crear cuenta</a>
-                                        </div>
-                                    {% endif %}
-                            </div>
-                        </div>
-                    </div>
+<br></br>
+  <div style="text-align:center"><h2><b>¡Bienvenido de Nuevo!</b></h1></div>
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'home:casa' %}"><H1 align="center"><b>&larr; Regresar a Inicio</b></h1></a>
+            {% else %}
+                    <small class ="text-danger">
+                    {% if form.errors %}
+                        error
+                    {% endif %}
+                    </small> 
                 </div>
-            </div>
+                <form class="user" method="POST">
+                    {% csrf_token %} 
+                    <div style="text-align:center"> <h2>    {{ form.as_p }}</h2></div>
 
-        </div>
+                    <div style="text-align:center"><button  type="submit" class= "btn btn-primary btn-user btn-lg">Inciar Sesión</button></div>
+                    
+                </form>
 
-    </div>
+                <br></br>
+                <div style="text-align:center"><a class="big" href="{% url 'password_reset' %}"><h3>¿Olvidaste tu contraseña?</h3></a></div>              
+                <div style="text-align:center"><a class="big" href="{% url 'home:signup' %}"><h3>Crear cuenta</h3></a></div>
 
-</div>
-
-
+            {% endif %}</td>
 {% endblock content %}

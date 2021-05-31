@@ -1,13 +1,15 @@
-{% extends "base/base.html" %}
+{% extends "base/base2.html" %}
 
 {% block title %}INDEX{% endblock %}
 
 {% block content %}
-
+<br></br>
     {% if request.user.is_authenticated %}
-        <h2> Bienvenido | {{ user }}</h2>   
+        <div style="text-align:center"><h2><b>¡Bienvenido {{ user }}!</b></h2></div>
+        <div style="text-align:center"><h2><a href ="{% url 'home:casa' %}"><b>&larr;Regresar a Inicio</b></a><h2></div></div>   
     {% else %}
-        <a href ="{% url 'home:login' %}">Login Please</a>
+        <div style="text-align:center"><h2><b>¡Bienvenido de Nuevo!</b></h2></div> 
+        <div style="text-align:center"><h2><a href ="{% url 'home:login' %}"><b>&larr;Iniciar Sesión</b></a><h2></div></div>
     {% endif %}
   
 {% endblock %}

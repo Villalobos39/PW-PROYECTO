@@ -11,7 +11,7 @@ from .models import User, Usuario , Materia_Actual, Historial_Materias, Escuela,
 from .forms import CustomUserCreationForm
 from django.http import HttpResponse
 from django.core import serializers
-from .forms import Update_Calificacion
+from .forms import Update_Calificacion, RegistroForm
 
 from .forms import UpdateUserForm, CreateUserForm
 from .forms import UpdateGrupoForm, CreateGrupoForm
@@ -294,14 +294,14 @@ class VistaCreateHistorial_Materias(generic.CreateView):
 #Funcion para crear nuevo usuario
 class Signup(generic.CreateView):
     template_name = "home/signup.html"
-    form_class = CustomUserCreationForm
+    form_class = RegistroForm
 
     def get_success_url(self):
         return reverse('home:index')
 
 #Funcion para Error 404 (Page not Found)
 class Error404View(TemplateView):
-    template_name = "home/404.html"
+    template_name = "base/base2.html"
 
 
 #########################################################################     VISTAS DEL ALUMNOS     

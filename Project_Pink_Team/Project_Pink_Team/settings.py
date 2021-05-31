@@ -75,8 +75,8 @@ WSGI_APPLICATION = 'Project_Pink_Team.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'database_pink3',
-        'USER': 'mydatabaseuser3',
+        'NAME': 'database_pink1',
+        'USER': 'mydatabaseuser1',
         'PASSWORD': 'mypassword',
         'HOST': '127.0.0.1',
         'PORT': '5432',
@@ -131,3 +131,11 @@ AUTH_USER_MODEL = "home.User"
 #Redirecciones del login y logout
 LOGIN_REDIRECT_URL = reverse_lazy('home:casa')
 LOGOUT_REDIRECT_URL = '/login/'
+
+# HABILITAR LAS SIGUIENTES LINEAS E INCLUIR UN CORREO PARA QUE FUNCIONE
+# EMAIL_USE_TLS = True
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 25
+# EMAIL_HOST_USER = 'correo@gmail.com'
+# EMAIL_HOST_PASSWORD = 'password'
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

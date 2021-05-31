@@ -121,3 +121,21 @@ class Update_Calificacion(forms.ModelForm):
         model = Materia_Actual
         fields = "__all__"
         exclude = 'id', 'alumno', 'nombre_materia', 'horario', 
+
+
+class RegistroForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = {          
+            'username',  
+            'first_name',
+            'last_name',
+            'email',            
+        }
+
+        labels = {
+            'username': "Nombre de Usuario",
+            'first_name': 'Nombre',
+            'last_name': 'Apellidos',
+            'email': 'Correo',
+        }
