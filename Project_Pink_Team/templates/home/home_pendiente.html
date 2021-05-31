@@ -1,0 +1,14 @@
+{% extends "base/base2.html" %}
+
+{% block title %}PENDIENTE{% endblock %}
+
+{% block content %}
+
+    {% if request.user.is_authenticated %}
+        <br></br>
+        <H1 align="center"><b>Esperar a que su cuenta sea verificada | {{ user }}</b></h1> 
+        <div align="center"><img src="https://www.colaborabora.org/wp-content/uploads/2018/04/RelojArena_JeremyBear.gif" width="300" height="300"/></div>
+    {% else %}
+        <a href ="{% url 'home:login' %}">Login Please</a>
+    {% endif %}
+{% endblock %}

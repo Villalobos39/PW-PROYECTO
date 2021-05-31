@@ -1,0 +1,102 @@
+{% extends "base/base.html" %}
+<!-- /. Aqui va el titulo de la pagina.... si lo dejas vacio no aparecera nada -->
+{% block title%}Grupo{% endblock %}
+<!-- /. Aqui va el contenido.... si lo dejas vacio no aparecera nada -->
+{% block content %}
+<h2>Pagina donde el docente puede ver su grupo actual y revisar detalles de un alumno</h2>
+
+
+<table class="table">
+    <th>Nombre</th>
+    <th>Detalle</th>
+    <tr>
+        <td>Nombre</td>
+        <td>{{ object.user.first_name }} {{ object.user.last_name }}</td>
+    </tr>
+    <tr>
+        <td>Teléfono de casa</td>
+        <td>{{ object.telefono_casa }}</td>
+    </tr>
+    <tr>
+        <td>Teléfono celular</td>
+        <td>{{ object.telefono_cel }}</td>
+    </tr>
+    <tr>
+        <td>Grado</td>
+        <td>{{ object.grado_alumno }}</td>
+    </tr>
+    <tr>
+        <td>Grupo</td>
+        <td>{{ object.grupo }}</td>
+    </tr>
+    <tr>
+        <td>Turno</td>
+        <td>{{ object.grupo.turno }}</td>
+    </tr>
+    <tr>
+        <td>Curp</td>
+        <td>{{ object.curp }}</td>
+    </tr>
+    <tr>
+        <td>Dirección</td>
+        <td>{{ object.direccion }}</td>
+    </tr>
+</table>
+           
+<table class="table">
+    <th>Materia</th>
+    <th>Horario</th>
+    <th>b1</th>
+    <th>b2</th>
+    <th>b3</th>
+    <th>b4</th>
+    <th>b5</th>
+    <th>Promedio</th>
+    {% for materia_actual in object.materia_actual_set.all %}
+    <tr>
+        <td>{{ materia_actual.nombre_materia }}</td>
+        <td>{{ materia_actual.horario }}</td>
+        <td>{{ materia_actual.b1 }}</td>
+        <td>{{ materia_actual.b2 }}</td>
+        <td>{{ materia_actual.b3 }}</td>
+        <td>{{ materia_actual.b4 }}</td>
+        <td>{{ materia_actual.b5 }}</td>
+        <td>{{ materia_actual.promedio }}</td>
+        <td><a href="{% url 'home:update_calificacion' materia_actual.pk %}">Actualizar</a></td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
+
+
+{% block buttons%}
+
+<li>
+    <a href="{% url 'home:home_docente' %}"><i class="fa fa-qrcode "></i>Inicio</a>
+</li>
+<li>
+    <a href="{% url 'home:grupo_docente' %}"><i class="fa fa-bar-chart-o"></i>Grupo</a>
+</li>
+<li>
+    <a href="{% url 'home:reporte_docente' %}"><i class="fa fa-qrcode "></i>Generar reporte</a>
+</li>
+<li>
+    <a href="{% url 'home:historial_docente' %}"><i class="fa fa-bar-chart-o"></i>Historial</a>
+</li>
+<li>                            
+    <a href="{% url 'home:logout' %}"><i class="fa fa-qrcode "></i>Salir del sistema</a>
+</li>
+
+{% endblock %}
+<!-- /. Aqui va el boton de logout.... si lo dejas vacio no aparecera nada -->
+{% block logout%}{% endblock %}
+<!-- /. Aqui va el aviso de privacidad.... si lo dejas vacio no aparecera nada -->
+{% block privacy %}
+<H5 align="center">
+    PARA CUALQUIER ACLARACIÓN O DUDA ACERCA DE LA AUTENTIFICACIÓN DE LA PÁGINA, 
+    <BR> INFORMACIÓN DEL PRESENTE O CUALQUIER 
+    INCONVENIENTE CON ESTA PÁGINA WEB, FAVOR DE COMUNICARSE AL ÁREA DE REGISTRO DE LA ADMINISTRACIÓN ESCOLAR. 
+    <br>PARA MÁS INFORMACIÓN COMUNICARSE AL TEL. 6642015219 O AL CORREO: CONTROLESCOLAR@EDUCACIONBC.EDU.MX 
+</H5>
+{% endblock %}

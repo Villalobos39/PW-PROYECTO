@@ -1,9 +1,77 @@
 {% extends "base/base.html" %}
+{% load static %}
 <!-- /. Aqui va el titulo de la pagina.... si lo dejas vacio no aparecera nada -->
-{% block title%}Inicio{% endblock %}
+{% block title%}INICIO{% endblock %}
 <!-- /. Aqui va el contenido.... si lo dejas vacio no aparecera nada -->
 {% block content%}
-<h2>Pagina inicial de alumno</h2>
+<h2>BIENVENIDO : {{user.first_name}} </h2>
+<table class="table">
+    <h3 align="center"> <B>DATOS GENERALES DEL ALUMNO </B> </h3>
+    <hr>   
+    <tr> 
+        <td>       NOMBRE :{{user.first_name  }}         </td>
+        <td>       APELLIDOS :{{user.last_name  }}       </td>
+        <td>       USUARIO: {{user.username}}        </td> 
+    </tr>
+    <tr>
+        <td>       CORREO:{{user.email}}          </td>  
+    {% for usuario in filter %}
+        <td>   FECHA DE NACIMIENTO : {{usuario.fecha_nacimiento}} </td> 
+        <td>   CURP      : {{usuario.curp}}  </td>   
+    </tr>   
+    <TR> <TD> <th><br> <h4 align="center"> <B>DOMICILIO Y NUMERO DE CONTACTOS : </B></h4> </th>  </TD></TR>
+    <tr>
+        <td>    DIRECCION : {{usuario.direccion}}    </td>  
+    </tr>
+    <tr>    
+        <td>    TELEFONO HOME  : {{usuario.telefono_casa}}  </td> 
+        <td>    TELEFONO  : {{usuario.telefono_cel }}  </td> 
+    </tr>
+    <TR> <TD> <th> <br> <H4 align="center"><B>INFORMACION ACADEMICA : </B></H4></th> </TD>  </TR> 
+    <tr>
+        <td>   GRADO      : {{usuario.grado_alumno }}  </td>   
+        <td>   GRUPO     : {{usuario.grupo}} </td> 
+    </tr>     
+    {% endfor %}  
+</table>
+<br>
+<table class="table">
+    <h3 align="center"> <B>INFORMACION DE LA ESCUELA :</B></h3>  <hr>   
+    {% for escuela in filterU %}
+    <tr>
+        <td>    ESCUELA : {{escuela.nombre_institucion}}    </td>  
+        <td>    DIRECCION  : {{escuela.direccion}}  </td> 
+        <td>    NIVEL  : {{escuela.nivel_educativo }}  </td> 
+    </tr>
+    <tr>
+        <td>   CLAVE      : {{escuela.clave }}  </td>   
+        <td>   NO. CONTROL     : {{escuela.control}} </td> 
+        <td>   TURNO     : {{escuela.turno}} </td> 
+    </tr>     
+    {% endfor %}
+</table>
+
+<BR>
+    <td>
+        <th></th> 
+        <TH>
+            <h2>         
+                <P align="center" width="60%" style="color:rgb(22, 1, 162);"> MATERIAS ESCOLARES</P>
+            </h2>
+        </TH>    
+    </td>
+        <div> 
+            <MARQUEE>
+                <a href="https://www.conaliteg.sep.gob.mx/primaria.html">                
+                <img src="{% static 'assets/img/CLASSNOTE.png' %}" width="150" height="150" />     
+                <img src="{% static 'assets/img/ESP.png' %}" width="150" height="150"/>
+                <img src="{% static 'assets/img/MAT.png' %}" width="150" height="150" />
+                <img src="{% static 'assets/img/GEO.png' %}"width="150" height="150"/>
+                <img src="{% static 'assets/img/CIEN.png' %}" width="150" height="150" />
+                <img src="{% static 'assets/img/HIS.png' %}" width="150" height="150" />
+                </a>               
+            </MARQUEE>
+        </div> 
 {% endblock %}
 <!-- /. Aqui van los botones.... si lo dejas vacio no aparecera nada -->
 
@@ -13,20 +81,27 @@
     <a href="{% url 'home:home_alumno' %}"><i class="fa fa-qrcode "></i>Inicio</a>
 </li>
 <li>
-    <a href="{% url 'home:avance_alumno' %}"><i class="fa fa-bar-chart-o"></i>Avance de curso</a>
+    <a href="{% url 'home:avance_alumno'%}"><i class="fa fa-bar-chart-o"></i>Avance de curso</a>
+</li>
+<li>
+    <a href="{% url 'home:historial_alumno'%}"><i class="fa fa-bar-chart-o"></i>Historial</a>
 </li>
 <li>
     <a href="{% url 'home:imprimir_alumno' %}"><i class="fa fa-qrcode "></i>Imprimir boleta</a>
 </li>
-<li>
-    <a href="{% url 'home:historial_alumno' %}"><i class="fa fa-bar-chart-o"></i>Historial</a>
-</li>
-<li>
-    <a href="{% url 'home:index' %}"><i class="fa fa-qrcode "></i>Salir del sistema</a>
+<li>                           
+    <a href="{% url 'home:logout' %}"><i class="fa fa-qrcode "></i>Salir del sistema</a>
 </li>
 
 {% endblock %}
 <!-- /. Aqui va el boton de logout.... si lo dejas vacio no aparecera nada -->
 {% block logout%}{% endblock %}
 <!-- /. Aqui va el aviso de privacidad.... si lo dejas vacio no aparecera nada -->
-{% block privacy%}Aqui va el aviso de privacidad...{% endblock %}
+{% block privacy%}
+<H5 align="center">
+PARA CUALQUIER ACLARACIÓN O DUDA ACERCA DE LA AUTENTIFICACIÓN DE LA PÁGINA, 
+<BR> INFORMACIÓN DEL PRESENTE O CUALQUIER 
+INCONVENIENTE CON ESTA PÁGINA WEB, FAVOR DE COMUNICARSE AL ÁREA DE REGISTRO DE LA ADMINISTRACIÓN ESCOLAR. 
+<br>PARA MÁS INFORMACIÓN COMUNICARSE AL TEL. 6642015219 O AL CORREO: CONTROLESCOLAR@EDUCACIONBC.EDU.MX 
+</H5>
+{% endblock %}

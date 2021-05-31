@@ -1,0 +1,42 @@
+{% extends "base/base.html" %}
+<!-- /. Aqui va el titulo de la pagina.... si lo dejas vacio no aparecera nada -->
+{% block title%}Inicio{% endblock %}
+<!-- /. Aqui va el contenido.... si lo dejas vacio no aparecera nada -->
+{% block content%}
+<form method="POST">
+    {% csrf_token %}
+    <h2>Realmente deseas borrar a la insititucion: {{ object.nombre_institucion }}   </h2>
+    <button type="submit">Delete</button>
+    <button type="reset">Cancel</button>
+
+</form>
+{% endblock %}
+<!-- /. Aqui van los botones.... si lo dejas vacio no aparecera nada -->
+
+{% block buttons%}
+
+<li>
+    <a href="{% url 'home:home_administrador' %}"><i class="fa fa-qrcode "></i>Inicio</a>
+</li>
+<li>
+    <a href="{% url 'home:consulta_administrador' %}"><i class="fa fa-bar-chart-o"></i>Realizar consulta</a>
+</li>
+<li>
+    <a href="{% url 'home:historial_administrador' %}"><i class="fa fa-qrcode "></i>Historial de actividad</a>
+</li>
+<li>                              
+    <a href="{% url 'home:logout' %}"><i class="fa fa-qrcode "></i>Salir del sistema</a>
+</li>
+
+{% endblock %}
+<!-- /. Aqui va el boton de logout.... si lo dejas vacio no aparecera nada -->
+{% block logout%}{% endblock %}
+<!-- /. Aqui va el aviso de privacidad.... si lo dejas vacio no aparecera nada -->
+{% block privacy %}
+<H5 align="center">
+    PARA CUALQUIER ACLARACIÓN O DUDA ACERCA DE LA AUTENTIFICACIÓN DE LA PÁGINA, 
+    <BR> INFORMACIÓN DEL PRESENTE O CUALQUIER 
+    INCONVENIENTE CON ESTA PÁGINA WEB, FAVOR DE COMUNICARSE AL ÁREA DE REGISTRO DE LA ADMINISTRACIÓN ESCOLAR. 
+    <br>PARA MÁS INFORMACIÓN COMUNICARSE AL TEL. 6642015219 O AL CORREO: CONTROLESCOLAR@EDUCACIONBC.EDU.MX 
+</H5>
+{% endblock %}
