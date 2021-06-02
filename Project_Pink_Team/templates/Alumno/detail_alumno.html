@@ -1,0 +1,29 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% block title %} DETAIL ALUMNO {% endblock title %}
+{% block content %}
+    <h2>BIENVENIDO : {{user.first_name}} </h2>
+    <table class="table">
+        <thead class="table thead-dark"> 
+        <th><h3 align="center"> DETALLES DEL ALUMNO </h3></th>
+        </thead>
+    </table>
+        NOMBRE    : {{user.first_name}}
+    <Br>APELLIDOS : {{user.last_name}} 
+
+    <Br>DOMICILIO | NUMERO DE CONTACTO 
+
+    <BR>DIRECCION : {{object.direccion}}
+    <Br>TELEFONO  : {{object.telefono_casa}}
+    <Br>FECHA     : {{object.fecha_nacimiento}}
+    <Br>GRUPO     : {{object.grupo}}
+    <Br> CURP     : {{object.curp}}
+{% endblock %}
+<!-- /. Aqui van los botones.... si lo dejas vacio no aparecera nada -->
+{% block buttons%}
+
+<li>
+    <!-- <a href="{% url 'home:home_alumno' %}"><i class="fa fa-qrcode "></i>Inicio</a> -->
+</li>
+
+{% endblock %}

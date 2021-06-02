@@ -1,0 +1,29 @@
+{% extends 'base/base2.html' %}
+{% block title %}Login{% endblock title %}
+
+{% block content %}
+<br></br>
+  <div style="text-align:center"><h2><b>¡Bienvenido de Nuevo!</b></h1></div>
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'home:casa' %}"><H1 align="center"><b>&larr; Regresar a Inicio</b></h1></a>
+            {% else %}
+                    <small class ="text-danger">
+                    {% if form.errors %}
+                        error
+                    {% endif %}
+                    </small> 
+                </div>
+                <form class="user" method="POST">
+                    {% csrf_token %} 
+                    <div style="text-align:center"> <h2>    {{ form.as_p }}</h2></div>
+
+                    <div style="text-align:center"><button  type="submit" class= "btn btn-primary btn-user btn-lg">Inciar Sesión</button></div>
+                    
+                </form>
+
+                <br></br>
+                <div style="text-align:center"><a class="big" href="{% url 'password_reset' %}"><h3>¿Olvidaste tu contraseña?</h3></a></div>              
+                <div style="text-align:center"><a class="big" href="{% url 'home:signup' %}"><h3>Crear cuenta</h3></a></div>
+
+            {% endif %}</td>
+{% endblock content %}

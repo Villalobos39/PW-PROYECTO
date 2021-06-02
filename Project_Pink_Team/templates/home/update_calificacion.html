@@ -1,0 +1,97 @@
+{% extends "base/base.html" %}
+<!-- /. Aqui va el titulo de la pagina.... si lo dejas vacio no aparecera nada -->
+{% block title%}Modificar calificaciones{% endblock %}
+<!-- /. Aqui va el contenido.... si lo dejas vacio no aparecera nada -->
+{% block content %}
+<h3 align="center"> <B>ACTUALIZACIÓN CALIFICACIONES</B></h3> <BR>
+<!-- <form method="POST"> -->
+    <form method ="POST">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-8 ">
+                <div class="form-group">
+                    <label> B1: </label>
+                    <input class="form" type="number" name="b1" value="{{object.b1}}">
+                </div>
+            </div>
+        </div>    
+        <div class="row">
+            <div class="col-md-8">
+                <div class="form-group">
+                    <label> B2: </label>
+                    <input class="form" type="number" name="b2" value="{{object.b2}}">
+                </div>
+            </div>
+        </div>   
+        <div class="row">
+            <div class="col-md-8">
+                <div class="form-group">
+                    <label> B3: </label>
+                    <input class="form" type="number" name="b3" value="{{object.b3}}">
+                </div>
+            </div>
+        </div>    
+        <div class="row">
+            <div class="col-md-8">
+                <div class="form-group">
+                    <label> B4: </label>
+                    <input class="form" type="number" name="b4" value="{{object.b4}}">
+                </div>
+            </div>
+        </div>   
+        <div class="row">
+            <div class="col-md-8">
+                <div class="form-group">
+                    <label> B5: </label>
+                    <input class="form" type="number" name="b5" value="{{object.b5}}">
+                </div>
+            </div>
+        </div>   
+        <div class="row">
+            <div class="col-md-8">
+                <div class="form-group">
+                    <label> PROMEDIO: </label>
+                    <input class="form" type="number" name="promedio" value="{{object.promedio}}">
+                </div>
+            </div>
+        </div>   
+        <br>
+<!--  <>
+        {% csrf_token %}
+    {{ form }} -->
+    <button  type="submit">Update</button>
+    <button type="reset">Restablecer</button>
+    <button type="reset"><a href="{% url 'home:grupo_docente' %}">Regresar</a></button>
+</form>
+{% endblock %}
+
+{% block buttons%}
+
+<li>
+    <a href="{% url 'home:home_docente' %}"><i class="fa fa-qrcode "></i>Inicio</a>
+</li>
+<li>
+    <a href="{% url 'home:grupo_docente' %}"><i class="fa fa-bar-chart-o"></i>Grupo</a>
+</li>
+<li>
+    <a href="{% url 'home:reporte_docente' %}"><i class="fa fa-qrcode "></i>Imprimirn reporte</a>
+</li>
+<!-- <li>
+    <a href="{% url 'home:historial_docente' %}"><i class="fa fa-bar-chart-o"></i>Historial</a>
+</li> -->
+<li>                             
+    <a href="{% url 'home:logout' %}"><i class="fa fa-qrcode "></i>Salir del sistema</a>
+</li>
+
+{% endblock %}
+<!-- /. Aqui va el boton de logout.... si lo dejas vacio no aparecera nada -->
+{% block logout%}{% endblock %}
+<!-- /. Aqui va el aviso de privacidad.... si lo dejas vacio no aparecera nada -->
+{% block privacy %}
+<H5 align="center">
+    PARA CUALQUIER ACLARACIÓN O DUDA ACERCA DE LA AUTENTIFICACIÓN DE LA PÁGINA, 
+    <BR> INFORMACIÓN DEL PRESENTE O CUALQUIER 
+    INCONVENIENTE CON ESTA PÁGINA WEB, FAVOR DE COMUNICARSE AL ÁREA DE REGISTRO DE LA ADMINISTRACIÓN ESCOLAR. 
+    <br>PARA MÁS INFORMACIÓN COMUNICARSE AL TEL. 6642015219 O AL CORREO: CONTROLESCOLAR@EDUCACIONBC.EDU.MX 
+</H5>
+{% endblock %}
