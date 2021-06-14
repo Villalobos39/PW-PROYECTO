@@ -3,8 +3,52 @@
 {% block title%}Consulta{% endblock %}
 <!-- /. Aqui va el contenido.... si lo dejas vacio no aparecera nada -->
 {% block content%}
-<h2>Pagina donde el administrador puede seleccionar una tabla, revisarla y actualizarla</h2>
-<h2>Requerira de mas URLs.....</h2>
+<table class="table">
+    <h3 align="center"> <B>CONSULTA Y ADMINISTRACIÓN DE DATOS </B> </h3>
+    <hr>   
+</table>
+<table class="table">
+    <th> NOMBRE DE TABLA </th>
+    <th> AGREGAR </th>
+    <th> DETALLES </th>
+    <tr>
+        <td>USERS</td>
+        <td><a href="{% url 'home:create_user' %}">Agregar</a></td>
+        <td><a href="{% url 'home:tabla_user' %}">Detalles</a></td>
+    </tr>
+    <tr>
+        <td>GRUPOS</td>
+        <td><a href="{% url 'home:create_grupo' %}">Agregar</a></td>
+        <td><a href="{% url 'home:tabla_grupo' %}">Detalles</a></td>
+    </tr>
+    <tr>
+        <td>USUARIOS</td>
+        <td><a href="{% url 'home:create_usuario' %}">Agregar</a></td>
+        <td><a href="{% url 'home:tabla_usuario' %}">Detalles</a></td>
+    </tr>
+    <tr>
+        <td>ESCUELA</td>
+        <td><a href="{% url 'home:create_escuela' %}">Agregar</a></td>
+        <td><a href="{% url 'home:tabla_escuela' %}">Detalles</a></td>
+    </tr>
+    <tr>
+        <td>MATERIAS ACTUALES</td>
+        <td><a href="{% url 'home:create_materia_Actual' %}">Agregar</a></td>
+        <td><a href="{% url 'home:tabla_materia_Actual' %}">Detalles</a></td>
+    </tr>
+    <tr>
+        <td>PERIODOS</td>
+        <td><a href="{% url 'home:create_periodo' %}">Agregar</a></td>
+        <td><a href="{% url 'home:tabla_periodo' %}">Detalles</a></td>
+    </tr>
+    <tr>
+        <td>HISTORAL DE MATERIAS </td>
+        <td><a href="{% url 'home:create_historial_Materias' %}">Agregar</a></td>
+        <td><a href="{% url 'home:tabla_historial_Materias' %}">Detalles</a></td>
+    </tr>
+</table>
+<BR>
+<button type="reset"><a href="{% url 'home:home_administrador' %}">Regresar</a></button>
 {% endblock %}
 <!-- /. Aqui van los botones.... si lo dejas vacio no aparecera nada -->
 
@@ -17,14 +61,21 @@
     <a href="{% url 'home:consulta_administrador' %}"><i class="fa fa-bar-chart-o"></i>Realizar consulta</a>
 </li>
 <li>
-    <a href="{% url 'home:historial_administrador' %}"><i class="fa fa-qrcode "></i>Historial de actividad</a>
+    <a href="{% url 'home:historial_administrador' %}"><i class="fa fa-qrcode "></i>Imprimir reporte</a>
 </li>
-<li>
-    <a href="{% url 'home:index' %}"><i class="fa fa-qrcode "></i>Salir del sistema</a>
+<li>                             
+    <a href="{% url 'home:logout' %}"><i class="fa fa-qrcode "></i>Salir del sistema</a>
 </li>
 
 {% endblock %}
 <!-- /. Aqui va el boton de logout.... si lo dejas vacio no aparecera nada -->
 {% block logout%}{% endblock %}
 <!-- /. Aqui va el aviso de privacidad.... si lo dejas vacio no aparecera nada -->
-{% block privacy%}Aqui va el aviso de privacidad...{% endblock %}
+{% block privacy %}
+                <H5 align="center">
+                    PARA CUALQUIER ACLARACIÓN O DUDA ACERCA DE LA AUTENTIFICACIÓN DE LA PÁGINA, 
+                    <BR> INFORMACIÓN DEL PRESENTE O CUALQUIER 
+                    INCONVENIENTE CON ESTA PÁGINA WEB, FAVOR DE COMUNICARSE AL ÁREA DE REGISTRO DE LA ADMINISTRACIÓN ESCOLAR. 
+                    <br>PARA MÁS INFORMACIÓN COMUNICARSE AL TEL. 6642015219 O AL CORREO: CONTROLESCOLAR@EDUCACIONBC.EDU.MX 
+                    </H5>
+{% endblock %}

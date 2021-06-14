@@ -1,24 +1,25 @@
-{% extends "base/base.html" %}
+{% extends "base/base2.html" %}
 
-<!-- /. Aqui va el titulo de la pagina.... si lo dejas vacio no aparecera nada -->
-{% block title%}Login{% endblock %}
+{% block title %}INDEX{% endblock %}
 
-
-
-<!-- /. Aqui va el contenido.... si lo dejas vacio no aparecera nada -->
-{% block content%}
-<h2>Pagina inicial aqui va un login</h2>
-<!-- /. Los siguientes tres botones solo estan aqui por motivos demostrativos.... -->
-<h2><a href="{% url 'home:home_alumno' %}">Inicio alumno</a></h2>
-<h2><a href="{% url 'home:home_docente' %}">Inicio docente</a></h2>
-<h2><a href="{% url 'home:home_administrador' %}">Inicio administrador</a></h2>
+{% block content %}
+<br></br>
+    {% if request.user.is_authenticated %}
+        <div style="text-align:center"><h2><b>¡Bienvenido {{ user }}!</b></h2></div>
+        <div style="text-align:center"><h2><a href ="{% url 'home:casa' %}"><b>&larr;Regresar a Inicio</b></a><h2></div></div>   
+    {% else %}
+        <div style="text-align:center"><h2><b>¡Bienvenido de Nuevo!</b></h2></div> 
+        <div style="text-align:center"><h2><a href ="{% url 'home:login' %}"><b>&larr;Iniciar Sesión</b></a><h2></div></div>
+    {% endif %}
+  
 {% endblock %}
 
+{% block privacy %}
+<H5 align="center">
+    PARA CUALQUIER ACLARACIÓN O DUDA ACERCA DE LA AUTENTIFICACIÓN DE LA PÁGINA, 
+    <BR> INFORMACIÓN DEL PRESENTE O CUALQUIER 
+    INCONVENIENTE CON ESTA PÁGINA WEB, FAVOR DE COMUNICARSE AL ÁREA DE REGISTRO DE LA ADMINISTRACIÓN ESCOLAR. 
+    <br>PARA MÁS INFORMACIÓN COMUNICARSE AL TEL. 6642015219 O AL CORREO: CONTROLESCOLAR@EDUCACIONBC.EDU.MX 
+</H5>
+{% endblock %}
 
-
-<!-- /. Aqui van los botones.... si lo dejas vacio no aparecera nada -->
-{% block buttons%}{% endblock %}
-<!-- /. Aqui va el boton de logout.... si lo dejas vacio no aparecera nada -->
-{% block logout%}{% endblock %}
-<!-- /. Aqui va el aviso de privacidad.... si lo dejas vacio no aparecera nada -->
-{% block privacy%}Aqui va el aviso de privacidad...{% endblock %}

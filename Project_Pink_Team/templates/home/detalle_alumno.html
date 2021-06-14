@@ -1,0 +1,91 @@
+{% extends "base/base.html" %}
+<!-- /. Aqui va el titulo de la pagina.... si lo dejas vacio no aparecera nada -->
+{% block title%}Grupo{% endblock %}
+<!-- /. Aqui va el contenido.... si lo dejas vacio no aparecera nada -->
+{% block content %}
+<table class="table">
+    <h3 align="center"> <B>DATOS GENERALES DEL ALUMNO </B> </h3>
+    <hr>   
+    <tr> 
+        <td> <B>    NOMBRE :  </B>  {{object.user.first_name }}         </td>
+        <td> <B>    APELLIDOS : </B>  {{object.user.last_name  }}       </td>
+        <td> <B>    CORREO :  </B> {{object.user.email}}          </td>   
+    </tr>
+    <tr>       
+   
+        <td> <B>    FECHA DE NACIMIENTO : </B>  {{object.fecha_nacimiento}} </td> 
+        <td> <B>    CURP      : </B>  {{object.curp}}  </td>   
+    </tr> 
+    <tr>
+        <td> <B>    DIRECCIÓN :  </B> {{usuario.direccion}}  </td> 
+        <td> <B>    TELEFONO DE CASA :  </B> {{object.telefono_casa}}</td>  
+        <td> <B>    TELEFONO CELULAR :  </B> {{ object.telefono_cel}}</td>
+       
+    </tr>
+    <tr>
+        <td> <B>  GRUPO :  </B> {{object.grado_alumno}}</td> 
+        <td> <B>  GRUPO :  </B> {{object.grupo}}</td> 
+        <td> <B>  TURNO :  </B> {{object.grupo.turno }}          </td>   
+         
+    </tr> 
+</table>
+
+<BR>           
+<table class="table">
+    <h3 align="center"> <B>BOLETA DE CALIFICACIONES</B> </h3><HR>
+    <th>Materia</th>
+    <th>Horario</th>
+    <th>b1</th>
+    <th>b2</th>
+    <th>b3</th>
+    <th>b4</th>
+    <th>b5</th>
+    <th>Promedio</th>
+    {% for materia_actual in object.materia_actual_set.all %}
+    <tr>
+        <td>{{ materia_actual.nombre_materia }}</td>
+        <td>{{ materia_actual.horario }}</td>
+        <td>{{ materia_actual.b1 }}</td>
+        <td>{{ materia_actual.b2 }}</td>
+        <td>{{ materia_actual.b3 }}</td>
+        <td>{{ materia_actual.b4 }}</td>
+        <td>{{ materia_actual.b5 }}</td>
+        <td>{{ materia_actual.promedio }}</td>
+        <td><a href="{% url 'home:update_calificacion' materia_actual.pk %}">Actualizar</a></td>
+    </tr>
+    {% endfor %}
+</table>
+<button type="reset"><a href="{% url 'home:grupo_docente' %}">Regresar</a></button>
+<BR> <H5 align="center">SI DESEA IMPRIMIR LA SIGUIENTE VISTA PRESIONAR LAS TECLAS : <BR> CTRL + P </H5>
+
+{% endblock %}
+
+
+{% block buttons%}
+<li>
+    <a href="{% url 'home:home_docente' %}"><i class="fa fa-qrcode "></i>Inicio</a>
+</li>
+<li>
+    <a href="{% url 'home:grupo_docente' %}"><i class="fa fa-bar-chart-o"></i>Grupo</a>
+</li>
+<li>
+    <a href="{% url 'home:reporte_docente' %}"><i class="fa fa-qrcode "></i>Imprimir reporte</a>
+</li>
+<!-- <li>
+    <a href="{% url 'home:historial_docente' %}"><i class="fa fa-bar-chart-o"></i>Historial</a>
+</li> -->
+<li>                             
+    <a href="{% url 'home:logout' %}"><i class="fa fa-qrcode "></i>Salir del sistema</a>
+</li>
+{% endblock %}
+<!-- /. Aqui va el boton de logout.... si lo dejas vacio no aparecera nada -->
+{% block logout%}{% endblock %}
+<!-- /. Aqui va el aviso de privacidad.... si lo dejas vacio no aparecera nada -->
+{% block privacy %}
+<H5 align="center">
+    PARA CUALQUIER ACLARACIÓN O DUDA ACERCA DE LA AUTENTIFICACIÓN DE LA PÁGINA, 
+    <BR> INFORMACIÓN DEL PRESENTE O CUALQUIER 
+    INCONVENIENTE CON ESTA PÁGINA WEB, FAVOR DE COMUNICARSE AL ÁREA DE REGISTRO DE LA ADMINISTRACIÓN ESCOLAR. 
+    <br>PARA MÁS INFORMACIÓN COMUNICARSE AL TEL. 6642015219 O AL CORREO: CONTROLESCOLAR@EDUCACIONBC.EDU.MX 
+</H5>
+{% endblock %}

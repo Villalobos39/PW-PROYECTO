@@ -1,0 +1,28 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Escuela{% endblock title%}
+
+{% block content %}
+<table class="table">
+    <thead class="table thead-dark">
+        <th>Nombre</th>
+        <th>Direccion</th>
+        <th>Nivel</th>
+        <th>Control</th>
+        <th>Turno</th>
+        <th>Clave</th>
+        </thead>
+        {% for obj in object_list %}
+        <tr> 
+            <td>{{ obj.nombre_institucion }}  </td>
+            <td>{{ obj.direccion }}  </td>
+            <td>{{ obj.nivel_educativo }}  </td>
+            <td>{{ obj.control }}  </td>
+            <td>{{ obj.turno }}  </td>
+            <td>{{ obj.clave }}  </td>
+        </tr>
+         {% endfor %}
+</table>
+{% endblock %}
+{% block buttons%}
+{% endblock %}

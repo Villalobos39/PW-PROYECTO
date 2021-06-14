@@ -1,11 +1,52 @@
 {% extends "base/base.html" %}
+{% load static %}
 <!-- /. Aqui va el titulo de la pagina.... si lo dejas vacio no aparecera nada -->
 {% block title%}Reporte{% endblock %}
 <!-- /. Aqui va el contenido.... si lo dejas vacio no aparecera nada -->
 {% block content%}
-<h2>Pagina donde el docente selecciona un alumno e imprime un reporte para los padres o tutores</h2>
+<table class="table">
+    <h3 align="center"> IMPRIMIR REPORTE DE CALIFICACIONES DE LOS ALUMNOS </h3>
+    <hr>
+</table>
+<H3 align="center">
+    <B> SI DESEA IMPRIMIR LA LISTA DE LOS ALUMNOS: </B>   
+    <BR> SELECIONE LO QUE DESEA IMPRIMIR
+        <BR>LUEGO PRESIONA : CTRL + P <BR> <hr>
+            <BR> EJEMPLO DE LA VISTA .....
+</H3>
+<TABLE align="center">
+    <td>
+        <th></th> <th></th> <th></th><th></th> <th></th> <th></th> <th></th> 
+    </td>
+    <td >     
+        <img src="{% static 'assets/img/SelePFD.png' %}" width="900" height="400" />
+    </td>
+</TABLE>  
+
+<TABLE align="center">
+    <td>
+        <th></th> <th></th> <th></th><th></th> <th></th> <th></th> <th></th> 
+    </td>
+    <td >     
+        <img src="{% static 'assets/img/ListaAlm.png' %}"  />
+    </td>
+</TABLE>   
+<H3 align="center">
+    <BR>DESPUES PRESIONA : MAS AJUSTES -> SOLO CONTENIDO SELECIONADO  <BR> <hr>
+</H3> 
+<TABLE align="center">
+    <td>
+        <th></th> <th></th> <th></th><th></th> <th></th> <th></th> <th></th> 
+    </td>
+    <td >     
+        <img src="{% static 'assets/img/ListaAlmPFD.png' %}" width="800" height="500" />
+    </td>
+</TABLE>   
+
+
 {% endblock %}
 <!-- /. Aqui van los botones.... si lo dejas vacio no aparecera nada -->
+
 
 {% block buttons%}
 
@@ -16,17 +57,23 @@
     <a href="{% url 'home:grupo_docente' %}"><i class="fa fa-bar-chart-o"></i>Grupo</a>
 </li>
 <li>
-    <a href="{% url 'home:reporte_docente' %}"><i class="fa fa-qrcode "></i>Generar reporte</a>
+    <a href="{% url 'home:reporte_docente' %}"><i class="fa fa-qrcode "></i>Imprimir reporte</a>
 </li>
-<li>
+<!-- <li>
     <a href="{% url 'home:historial_docente' %}"><i class="fa fa-bar-chart-o"></i>Historial</a>
+</li> -->
+<li>                             
+    <a href="{% url 'home:logout' %}"><i class="fa fa-qrcode "></i>Salir del sistema</a>
 </li>
-<li>
-    <a href="{% url 'home:index' %}"><i class="fa fa-qrcode "></i>Salir del sistema</a>
-</li>
-
 {% endblock %}
 <!-- /. Aqui va el boton de logout.... si lo dejas vacio no aparecera nada -->
 {% block logout%}{% endblock %}
 <!-- /. Aqui va el aviso de privacidad.... si lo dejas vacio no aparecera nada -->
-{% block privacy%}Aqui va el aviso de privacidad...{% endblock %}
+{% block privacy %}
+<H5 align="center">
+    PARA CUALQUIER ACLARACIÓN O DUDA ACERCA DE LA AUTENTIFICACIÓN DE LA PÁGINA, 
+    <BR> INFORMACIÓN DEL PRESENTE O CUALQUIER 
+    INCONVENIENTE CON ESTA PÁGINA WEB, FAVOR DE COMUNICARSE AL ÁREA DE REGISTRO DE LA ADMINISTRACIÓN ESCOLAR. 
+    <br>PARA MÁS INFORMACIÓN COMUNICARSE AL TEL. 6642015219 O AL CORREO: CONTROLESCOLAR@EDUCACIONBC.EDU.MX 
+</H5>
+{% endblock %}

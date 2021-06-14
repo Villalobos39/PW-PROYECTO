@@ -1,9 +1,54 @@
 {% extends "base/base.html" %}
+{% load static %}
 <!-- /. Aqui va el titulo de la pagina.... si lo dejas vacio no aparecera nada -->
-{% block title%}Historial Alumno{% endblock %}
-<!-- /. Aqui va el contenido.... si lo dejas vacio no aparecera nada -->
+{% block title%}HISTORIAL{% endblock %}
+<!-- /. Aqui va el contenido.... si lo dejas vacio no aparecera nada Historial_alumno-->
 {% block content%}
-<h2>Pagina donde ves el historial del alumno actual... (calificaciones pasadas)</h2>
+<!-- <h2>BIENVENIDO :{{user.first_name}} </h2> -->
+<table class="table">
+    <h3 align="center"> HISTORIAL ACADEMICO DE CALIFICACIONES </h3>
+    <hr>
+    <tr> 
+        <td>   <b> NOMBRE : </b> {{user.first_name  }}         </td>
+        <td>   <b> APELLIDOS :</b>  {{user.last_name  }}       </td>
+    {% for usuario in filterU %}
+        <td>   <B> CURP      : </B>{{usuario.curp}}  </td>  
+    </tr>
+    <tr>
+        <td>   <B> FECHA     : </B>  {{usuario.fecha_nacimiento}}  </td>  
+        <td>   <B>  GRADO    : </B>  {{usuario.grado_alumno}}  </td>       
+        <td>   <B> GRUPO     : </B> {{usuario.grupo}} </td> 
+    </tr>       
+</table>
+<table class="table">
+    <tr>
+        <th scope="col"> MATERIA </th>
+        <th scope="col"> HORARIO </th>
+        <th scope="col"> B1 </th>
+        <th scope="col"> B2 </th>
+        <th scope="col"> B3 </th>
+        <th scope="col"> B4 </th>
+        <th scope="col"> B5 </th>
+        <th scope="col"> PROMEDIO </th>
+      </tr>
+ 
+    {% for avance in filter %}
+        {% if avance.alumno_id == usuario.pk %}
+        <tr> 
+            <td> {{avance.nombre_materia}} </td>
+            <td> {{avance.horario}} </td>
+            <td> {{avance.b1}} </td>
+            <td> {{avance.b2}} </td>
+            <td> {{avance.b3}} </td>
+            <td> {{avance.b4}} </td>
+            <td> {{avance.b5}} </td>
+            <td> {{avance.promedio}}</td>
+        </tr>
+        {% endif %}
+    {% endfor %}   
+    {% endfor %}  
+</table>
+<BR> <H5 align="center">SI DESEA IMPRIMIR LA SIGUIENTE VISTA PRESIONAR LAS TECLAS : <BR> CTRL + P </H5>
 {% endblock %}
 <!-- /. Aqui van los botones.... si lo dejas vacio no aparecera nada -->
 
@@ -13,20 +58,27 @@
     <a href="{% url 'home:home_alumno' %}"><i class="fa fa-qrcode "></i>Inicio</a>
 </li>
 <li>
-    <a href="{% url 'home:avance_alumno' %}"><i class="fa fa-bar-chart-o"></i>Avance de curso</a>
+    <a href="{% url 'home:avance_alumno'%}"><i class="fa fa-bar-chart-o"></i>Avance de curso</a>
 </li>
 <li>
-    <a href="{% url 'home:imprimir_alumno' %}"><i class="fa fa-qrcode "></i>Imprimir boleta</a>
+    <a href="{% url 'home:historial_alumno'%}"><i class="fa fa-bar-chart-o"></i>Historial</a>
 </li>
 <li>
-    <a href="{% url 'home:historial_alumno' %}"><i class="fa fa-bar-chart-o"></i>Historial</a>
+    <a href="{% url 'home:imprimir_alumno'%}"><i class="fa fa-qrcode "></i>Imprimir boleta</a>
 </li>
-<li>
-    <a href="{% url 'home:index' %}"><i class="fa fa-qrcode "></i>Salir del sistema</a>
+<li>                            
+    <a href="{% url 'home:logout' %}"><i class="fa fa-qrcode "></i>Salir del sistema</a>
 </li>
 
 {% endblock %}
 <!-- /. Aqui va el boton de logout.... si lo dejas vacio no aparecera nada -->
 {% block logout%}{% endblock %}
 <!-- /. Aqui va el aviso de privacidad.... si lo dejas vacio no aparecera nada -->
-{% block privacy%}Aqui va el aviso de privacidad...{% endblock %}
+{% block privacy%}
+<H5 align="center">
+PARA CUALQUIER ACLARACIÓN O DUDA ACERCA DE LA AUTENTIFICACIÓN DE LA PÁGINA, 
+<BR> INFORMACIÓN DEL PRESENTE O CUALQUIER 
+INCONVENIENTE CON ESTA PÁGINA WEB, FAVOR DE COMUNICARSE AL ÁREA DE REGISTRO DE LA ADMINISTRACIÓN ESCOLAR. 
+<br>PARA MÁS INFORMACIÓN COMUNICARSE AL TEL. 6642015219 O AL CORREO: CONTROLESCOLAR@EDUCACIONBC.EDU.MX 
+</H5>
+{% endblock %}

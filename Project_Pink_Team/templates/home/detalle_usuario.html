@@ -1,0 +1,76 @@
+{% extends "base/base.html" %}
+<!-- /. Aqui va el titulo de la pagina.... si lo dejas vacio no aparecera nada -->
+{% block title%}Inicio{% endblock %}
+<!-- /. Aqui va el contenido.... si lo dejas vacio no aparecera nada -->
+{% block content%}
+<table class="table">
+    <h3 align="center"> <B> DETALLE USUARIO </B> </h3>
+    <tr>
+        <td> <b>ID USUARIO:</b> {{ object.id }}</td>
+        <td><b> USER ID: </b>{{ object.user_id }}</td>
+        <td><b>NOMBRE USER:</b> {{ object.user}}</td>
+    </tr>
+    <!-- <tr>
+        <td>¿Docente?</td>
+        <td>{{ object.is_docente }}</td>
+    </tr>
+    <tr>
+        <td>¿Admin?</td>
+        <td>{{ object.is_admin }}</td>
+    </tr>
+    <tr>
+        <td>¿Alumno?</td>
+        <td>{{ object.is_alumno }}</td>
+    </tr> -->
+    <tr>
+        <td> <b>DIRECCIÓN : </b>{{ object.direccion }}</td>
+        <td> <b>TELEFONO DE CASA : </b> {{ object.telefono_casa }}</td>
+        <td><b>CELULAR : </b> {{ object.telefono_cel }}</td>
+    </tr>
+    <tr>
+        <td><b>TITULO DOCENTE : </b> {{ object.titulo_docente }}</td>
+        <td><b>GRADO ALUMNO : </b> {{ object.grado_alumno }}</td>
+        <td><b>GRUPO ID : </b> {{ object.grupo_id }}</td>
+    </tr>
+    <tr>
+        <td><b>FECHA DE NACIMIENTO : </b>{{ object.fecha_nacimiento }}</td>
+        <td><b>CUPR : </b> {{ object.curp }}</td>
+    </tr>
+   
+</table>
+
+<BR>
+    <button type="reset"><a href="{% url 'home:tabla_usuario' %}">Regresar</a></button>
+<BR><BR>
+
+                                           
+{% endblock %}
+<!-- /. Aqui van los botones.... si lo dejas vacio no aparecera nada -->
+
+{% block buttons%}
+
+<li>
+    <a href="{% url 'home:home_administrador' %}"><i class="fa fa-qrcode "></i>Inicio</a>
+</li>
+<li>
+    <a href="{% url 'home:consulta_administrador' %}"><i class="fa fa-bar-chart-o"></i>Realizar consulta</a>
+</li>
+<li>
+    <a href="{% url 'home:historial_administrador' %}"><i class="fa fa-qrcode "></i>Imprimir reporte</a>
+</li>
+<li>                             
+    <a href="{% url 'home:logout' %}"><i class="fa fa-qrcode "></i>Salir del sistema</a>
+</li>
+
+{% endblock %}
+<!-- /. Aqui va el boton de logout.... si lo dejas vacio no aparecera nada -->
+{% block logout%}{% endblock %}
+<!-- /. Aqui va el aviso de privacidad.... si lo dejas vacio no aparecera nada -->
+{% block privacy %}
+<H5 align="center">
+    PARA CUALQUIER ACLARACIÓN O DUDA ACERCA DE LA AUTENTIFICACIÓN DE LA PÁGINA, 
+    <BR> INFORMACIÓN DEL PRESENTE O CUALQUIER 
+    INCONVENIENTE CON ESTA PÁGINA WEB, FAVOR DE COMUNICARSE AL ÁREA DE REGISTRO DE LA ADMINISTRACIÓN ESCOLAR. 
+    <br>PARA MÁS INFORMACIÓN COMUNICARSE AL TEL. 6642015219 O AL CORREO: CONTROLESCOLAR@EDUCACIONBC.EDU.MX 
+</H5>
+{% endblock %}
