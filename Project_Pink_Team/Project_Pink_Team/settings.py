@@ -135,10 +135,10 @@ LOGOUT_REDIRECT_URL = '/login/'
 
 #Region
 # HABILITAR LAS SIGUIENTES LINEAS E INCLUIR UN CORREO PARA QUE FUNCIONE
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 25
-EMAIL_HOST_USER = 'cuenta.riot123x@gmail.com'
-EMAIL_HOST_PASSWORD = '891xrp71sqt71'
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_USE_TLS = True
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 25
+# EMAIL_HOST_USER = 'cuenta.riot123x@gmail.com'
+# EMAIL_HOST_PASSWORD = 'jajaja'
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 #EndRegion
