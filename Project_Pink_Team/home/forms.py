@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UsernameField  
 from django.contrib.auth import get_user_model
+from django.forms import Form, ChoiceField, CharField
+
 
 
 from .models import User, Usuario , Materia_Actual, Historial_Materias, Escuela, Grupo, Periodo
@@ -16,8 +18,8 @@ class CustomUserCreationForm(UserCreationForm):
 class UpdateUserForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = "__all__"
-        exclude = 'id',
+        fields = ("first_name","last_name","username","email","user_permissions","password")
+
 
 class CreateUserForm(forms.ModelForm):
     class Meta:
@@ -25,7 +27,7 @@ class CreateUserForm(forms.ModelForm):
         fields = "__all__"
         exclude = 'id',
 
-
+#
 
 ##grupo
 
@@ -77,6 +79,7 @@ class UpdateMateria_ActualForm(forms.ModelForm):
         model = Materia_Actual
         fields = "__all__"
         exclude = 'id',
+        
 
 class CreateMateria_ActualForm(forms.ModelForm):
     class Meta:
@@ -123,20 +126,28 @@ class Update_Calificacion(forms.ModelForm):
         exclude = 'id', 'alumno', 'nombre_materia', 'horario', 
 
 
+# class RegistroForm(UserCreationForm):
+#     class Meta:
+#         model = User
+#         fields = {          
+#             'username',  
+#             'first_name',
+#             'last_name',
+#             'email',            
+#         }
+
+#         labels = {
+#             'username': "Nombre de Usuario",
+#             'first_name': 'Nombre',
+#             'last_name': 'Apellidos',
+#             'email': 'Correo',
+#         }
+
 class RegistroForm(UserCreationForm):
+    email = forms.EmailField(max_length=60,help_text="Se requiere un correo valido")
+
     class Meta:
         model = User
-        fields = {          
-            'username',  
-            'first_name',
-            'last_name',
-            'email',            
-        }
+        fields = ("first_name","last_name","username","email","user_permissions","password1","password2")
 
-        labels = {
-            'username': "Nombre de Usuario",
-            'first_name': 'Nombre',
-            'last_name': 'Apellidos',
-            'email': 'Correo',
-        }
 

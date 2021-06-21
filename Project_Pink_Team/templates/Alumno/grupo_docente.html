@@ -1,11 +1,13 @@
-{% extends "base/base.html" %}
+{% extends "base/base2.html" %}
+{% load bootstrap %}
 <!-- /. Aqui va el titulo de la pagina.... si lo dejas vacio no aparecera nada -->
 {% block title%}Grupo{% endblock %}
 <!-- /. Aqui va el contenido.... si lo dejas vacio no aparecera nada -->
 {% block content %}
-
-<table class="table">
-    <h3 align="center"> <B>GRUPOS DE ALUMNOS</B> </h3><HR>
+<br></br>
+<h3 align="center"> <B>CONSULTAS DE API</B> </h3><HR>
+{% comment %} <table class="table">
+    <h5 align="left"><button type="reset"><a href="{% url 'home:index' %}">Regresar</a></button></h5>
     <th>APELLIDO NOMBRE  </th>
     <th>GRADO</th>
     <th>GRUPO</th>
@@ -13,43 +15,57 @@
     <th>CORREO</th>
     <th>DETALLES</th>
     <th></th>
-    {% for doc in ufilter %}
-    {% for object in filter %}
-        {% if object.grupo == doc.grupo %}
+
+    {% for object in object_list %}
+        {% if object.titulo_docente == 'pendiente' or  object.titulo_docente == 'NA'%}
     <tr>
         <td>{{ object.user.last_name }} {{ object.user.first_name }} </td>
         <td>{{ object.grado_alumno }}</td>
         <td>{{ object.grupo.nombre_grupo }}</td>
         <td>{{ object.grupo.turno }}</td>
         <td>{{ object.user.email }}</td>
-        <td><a href="{% url 'home:detalle_alumno' object.pk %}">Detalle</a></td>
+        <td><a href="{% url 'home:api_alumno' object.pk %}">Detalle</a></td>
     </tr>
         {% endif %}
     {% endfor %}
+</table> {% endcomment %}
+
+<div class= "container">
+    <h5 align="left"><button type="reset"><a href="{% url 'home:index' %}">Regresar</a></button></h5>
+    <form method="GET", name = "buscar", value = "{{ request.GET.buscar }}">
+        {{ filter.form|bootstrap }}
+    
+    <button type="submit" class="btn btn-primary">Buscar</button> 
+    </form>
+
+
+    {% comment %} <ul>
+        {% for object in filter.qs %}
+            <li>
+                <a href="{% url 'home:api_alumno' object.pk %}">{{object.curp}}</a>
+            </li>
+        {% endfor %}
+    </ul> {% endcomment %}
+
+    <br></br>
+    <table class="table">
+    
+    <th>CURP  </th>
+    <th>DETALLE</th>
+    {% for object in filter.qs %}
+    <tr>
+        <td>{{ object.curp }}</td>
+        <td><a href="{% url 'home:api_alumno' object.pk %}">Detalle</a></td>
+    </tr>
     {% endfor %}
 </table>
-<BR> <H5 align="center">SI DESEA IMPRIMIR LA SIGUIENTE VISTA PRESIONAR LAS TECLAS : <BR> CTRL + P </H5>
-{% endblock %}
+</div>
 
-{% block buttons%}
-
-<li>
-    <a href="{% url 'home:home_docente' %}"><i class="fa fa-qrcode "></i>Inicio</a>
-</li>
-<li>
-    <a href="{% url 'home:grupo_docente' %}"><i class="fa fa-bar-chart-o"></i>Grupo</a>
-</li>
-<li>
-    <a href="{% url 'home:reporte_docente' %}"><i class="fa fa-qrcode "></i>Imprimir reporte</a>
-</li>
-<!-- <li>
-    <a href="{% url 'home:historial_docente' %}"><i class="fa fa-bar-chart-o"></i>Historial</a>
-</li> -->
-<li>                             
-    <a href="{% url 'home:logout' %}"><i class="fa fa-qrcode "></i>Salir del sistema</a>
-</li>
 
 {% endblock %}
+
+
+
 <!-- /. Aqui va el boton de logout.... si lo dejas vacio no aparecera nada -->
 {% block logout%}{% endblock %}
 <!-- /. Aqui va el aviso de privacidad.... si lo dejas vacio no aparecera nada -->

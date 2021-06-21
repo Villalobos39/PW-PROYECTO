@@ -6,6 +6,7 @@ from django.utils.translation import ugettext as _
 #buscar como pasar multiples campos en def_str
 #nos aseguramos que los nombres de usuario sea facil identificar que rol tienen
 class User(AbstractUser):
+    email = models.CharField(max_length=100, unique=True)
     pass
 
 class Grupo(models.Model):

@@ -7,12 +7,13 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required, permission_required
 from django.views.generic.base import TemplateView
+from django.contrib.auth import login, authenticate
 from .models import User, Usuario , Materia_Actual, Historial_Materias, Escuela, Grupo, Periodo
-from .forms import CustomUserCreationForm
 from django.http import HttpResponse
 from django.core import serializers
-from .forms import Update_Calificacion, RegistroForm
 
+from .forms import CustomUserCreationForm
+from .forms import Update_Calificacion, RegistroForm
 from .forms import UpdateUserForm, CreateUserForm
 from .forms import UpdateGrupoForm, CreateGrupoForm
 from .forms import UpdateUsuarioForm, CreateUsuarioForm
@@ -20,6 +21,15 @@ from .forms import UpdateEscuelaForm, CreateEscuelaForm
 from .forms import UpdateMateria_ActualForm, CreateMateria_ActualForm
 from .forms import UpdatePeriodoForm, CreatePeriodoForm
 from .forms import UpdateHistorial_MateriasForm, CreateHistorial_MateriasForm
+from django.db.models import Q
+
+from .filters import BoletaAlumno
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.decorators import api_view
+from home.serializers import BoletaSerializer
+import requests
+
 #from django.shortcuts import get_object_or_404
 #from django.conf import settings
 # Create your views here.
@@ -102,6 +112,8 @@ def Historial_Administrador(request):
 class VistaTablaUser(generic.ListView):
     template_name = "home/tabla_user.html"
     model = User
+    queryset = User.objects.all().order_by("id")
+    
 
 class VistaDetalleUser(generic.DetailView):
     template_name = "home/detalle_user.html"
@@ -118,15 +130,25 @@ class VistaDeleteUser(generic.DeleteView):
     model = User
     success_url = reverse_lazy("home:tabla_user")
 
-class VistaCreateUser(generic.CreateView):
-    template_name = "home/create_user.html"
-    model = User
-    form_class = CreateUserForm
-    success_url = reverse_lazy("home:consulta_administrador")
+def VistaCreateUser(request):
+    context = {}
+    if request.POST:
+        form = RegistroForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home:consulta_administrador')
+        else:
+            context['signup_form']=form
+    else:
+        form = RegistroForm()
+        context['signup_form']=form
+    return render(request, 'home/create_user.html', context)
+
 ###########################################################################################GrupoAdmin
 class VistaTablaGrupo(generic.ListView):
     template_name = "home/tabla_grupo.html"
     model = Grupo
+    queryset = Grupo.objects.all().order_by("id")
 
 class VistaDetalleGrupo(generic.DetailView):
     template_name = "home/detalle_grupo.html"
@@ -152,6 +174,7 @@ class VistaCreateGrupo(generic.CreateView):
 class VistaTablaUsuario(generic.ListView):
     template_name = "home/tabla_usuario.html"
     model = Usuario
+    queryset = Usuario.objects.all().order_by("id")
 
 class VistaDetalleUsuario(generic.DetailView):
     template_name = "home/detalle_usuario.html"
@@ -168,16 +191,25 @@ class VistaDeleteUsuario(generic.DeleteView):
     model = Usuario
     success_url = reverse_lazy("home:tabla_usuario")
 
-class VistaCreateUsuario(generic.CreateView):
-    template_name = "home/create_usuario.html"
-    model = Usuario
-    form_class = CreateUsuarioForm
-    success_url = reverse_lazy("home:consulta_administrador")
+def VistaCreateUsuario(request):
+    context = {}
+    if request.POST:
+        form = CreateUsuarioForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home:consulta_administrador')
+        else:
+            context['signup_form']=form
+    else:
+        form = CreateUsuarioForm()
+        context['signup_form']=form
+    return render(request, 'home/create_usuario.html', context)
 
 ###########################################################################################EscuelaAdmin
 class VistaTablaEscuela(generic.ListView):
     template_name = "home/tabla_escuela.html"
     model = Escuela
+    queryset = Escuela.objects.all().order_by("id")
 
 class VistaDetalleEscuela(generic.DetailView):
     template_name = "home/detalle_escuela.html"
@@ -194,16 +226,25 @@ class VistaDeleteEscuela(generic.DeleteView):
     model = Escuela
     success_url = reverse_lazy("home:tabla_escuela")
 
-class VistaCreateEscuela(generic.CreateView):
-    template_name = "home/create_escuela.html"
-    model = Escuela
-    form_class = CreateEscuelaForm
-    success_url = reverse_lazy("home:consulta_administrador")
+def VistaCreateEscuela(request):
+    context = {}
+    if request.POST:
+        form = CreateEscuelaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home:consulta_administrador')
+        else:
+            context['signup_form']=form
+    else:
+        form = CreateEscuelaForm()
+        context['signup_form']=form
+    return render(request, 'home/create_escuela.html', context)
 
 ###########################################################################################Materia_ActualAdmin
 class VistaTablaMateria_Actual(generic.ListView):
     template_name = "home/tabla_materia_Actual.html"
     model = Materia_Actual
+    queryset = Materia_Actual.objects.all().order_by("id")
 
 class VistaDetalleMateria_Actual(generic.DetailView):
     template_name = "home/detalle_materia_Actual.html"
@@ -220,11 +261,19 @@ class VistaDeleteMateria_Actual(generic.DeleteView):
     model = Materia_Actual
     success_url = reverse_lazy("home:tabla_materia_Actual")
 
-class VistaCreateMateria_Actual(generic.CreateView):
-    template_name = "home/create_materia_Actual.html"
-    model = Materia_Actual
-    form_class = CreateMateria_ActualForm
-    success_url = reverse_lazy("home:consulta_administrador")
+def VistaCreateMateria_Actual(request):
+    context = {}
+    if request.POST:
+        form = CreateMateria_ActualForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home:consulta_administrador')
+        else:
+            context['signup_form']=form
+    else:
+        form = CreateMateria_ActualForm()
+        context['signup_form']=form
+    return render(request, 'home/create_materia_Actual.html', context)
 
 
 
@@ -234,6 +283,7 @@ class VistaCreateMateria_Actual(generic.CreateView):
 class VistaTablaPeriodo(generic.ListView):
     template_name = "home/tabla_periodo.html"
     model = Periodo
+    queryset = Periodo.objects.all().order_by("id")
 
 class VistaDetallePeriodo(generic.DetailView):
     template_name = "home/detalle_periodo.html"
@@ -250,11 +300,20 @@ class VistaDeletePeriodo(generic.DeleteView):
     model = Periodo
     success_url = reverse_lazy("home:tabla_periodo")
 
-class VistaCreatePeriodo(generic.CreateView):
-    template_name = "home/create_periodo.html"
-    model = Periodo
-    form_class = CreatePeriodoForm
-    success_url = reverse_lazy("home:consulta_administrador")
+def VistaCreatePeriodo(request):
+    context = {}
+    if request.POST:
+        form = CreatePeriodoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home:consulta_administrador')
+        else:
+            context['signup_form']=form
+    else:
+        form = CreatePeriodoForm()
+        context['signup_form']=form
+    return render(request, 'home/create_periodo.html', context)
+
 
 ###########################################################################################historial_MateriasAdmin
 
@@ -262,6 +321,7 @@ class VistaCreatePeriodo(generic.CreateView):
 class VistaTablaHistorial_Materias(generic.ListView):
     template_name = "home/tabla_historial_Materias.html"
     model = Historial_Materias
+    queryset = Historial_Materias.objects.all().order_by("id")
 
 class VistaDetalleHistorial_Materias(generic.DetailView):
     template_name = "home/detalle_historial_Materias.html"
@@ -278,11 +338,21 @@ class VistaDeleteHistorial_Materias(generic.DeleteView):
     model = Historial_Materias
     success_url = reverse_lazy("home:tabla_historial_Materias")
 
-class VistaCreateHistorial_Materias(generic.CreateView):
-    template_name = "home/create_historial_Materias.html"
-    model = Historial_Materias
-    form_class = CreateHistorial_MateriasForm
-    success_url = reverse_lazy("home:consulta_administrador")
+def VistaCreateHistorial_Materias(request):
+    context = {}
+    if request.POST:
+        form = CreateHistorial_MateriasForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home:consulta_administrador')
+        else:
+            context['signup_form']=form
+    else:
+        form = CreateHistorial_MateriasForm()
+        context['signup_form']=form
+    return render(request, 'home/create_historial_Materias.html', context)
+
+    
 
 
 
@@ -292,12 +362,33 @@ class VistaCreateHistorial_Materias(generic.CreateView):
 
 
 #Funcion para crear nuevo usuario
-class Signup(generic.CreateView):
-    template_name = "home/signup.html"
-    form_class = RegistroForm
+# class Signup(generic.CreateView):
+#     template_name = "home/signup.html"
+#     form_class = RegistroForm
 
-    def get_success_url(self):
-        return reverse('home:index')
+#     def get_success_url(self):
+#         return reverse('home:index')
+
+def Signup(request):
+    context = {}
+    if request.POST:
+        form = RegistroForm(request.POST)
+        if form.is_valid():
+            form.save()
+            email = form.cleaned_data.get('email')
+            raw_password = form.changed_data.get('password1')
+            account = authenticate(email = email, password = raw_password)
+            login(request, account)
+            return redirect('home')
+        else:
+            context['signup_form']=form
+    else:
+        form = RegistroForm()
+        context['signup_form']=form
+    return render(request, 'home/signup.html', context)
+
+
+    
 
 #Funcion para Error 404 (Page not Found)
 class Error404View(TemplateView):
@@ -344,10 +435,108 @@ def Imprimir_Alumno(request):
     status_filter = queryset.filter(user=request.user)
     return render(request, 'home/imprimir_alumno.html', {'filter':status_filter})
 
+##########################AQUI EMPIZAN LAS API
 def wsBoleta(request):
-    data = serializers.serialize("json",Historial_Materias.objects.all())
+    data = serializers.serialize("json", Materia_Actual.objects.all())
     return HttpResponse(data, content_type="application/json")
 
+def wsAlumno(request):
+    url = "http://localhost:8000/v1/lista_alumno/" ##
+    response = requests.get(url)
+    response = response.json()
+
+    context = {
+        "object_list": response
+    }
+    return render(request, "Alumno/detalle_alumno.html", context)
+
+@api_view(["GET", "POST"])
+def Lista_Alumno(request):
+    #List
+    if request.method == "GET":
+        queryset = Materia_Actual.objects.all()
+        data = BoletaSerializer(queryset, many = True)
+        return Response(data.data, status = status.HTTP_200_OK)
+    #Create
+    elif request.method =="POST":
+        data = BoletaSerializer(data = request.data)
+        if data.is_valid():
+            data.save()
+            return Response(data.data, status = status.HTTP_201_CREATED)
+        return Response(data.errors, status = status.HTTP_400_BAD_REQUEST)
+#
+
+@api_view(["GET", "PUT"])
+def detail_update_alumno(request, pk=None):
+    queryset = Materia_Actual.objects.filter(id=pk).first()
+    if queryset:
+        #detail
+        if request.method == "GET":
+            data = BoletaSerializer(queryset)
+            return Response(data.data, status=status.HTTP_200_OK)
+        #Update
+        elif request.method == "PUT":
+            data = BoletaSerializer(queryset, data = request.data)
+            if data.is_valid():
+                data.save()
+                return Response(data.data)
+            return Response(data.errors, status = status.HTTP_400_BAD_REQUEST)
+        #Delete
+        # elif request.method == "DELETE":
+        #     queryset.delete()
+        #     return Response({"message": "Student Destroy Successsfull"}, status=status.HTTP_200_OK)
+    return Response({"message": "Student Not Found"}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class Grupo_API(generic.ListView):
+    model = Usuario
+    template_name = "Alumno/grupo_docente.html"
+    
+    
+    def get_context_data(self,**kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter'] = BoletaAlumno(self.request.GET, queryset=self.get_queryset())
+        return context
+
+    # def get_queryset(self):
+    #      return Usuario.objects.all().order_by("grupo", "user__last_name")
+
+    # def get_queryset(self):
+    #     query = self.request.GET.get('search')
+    #     filter_field = self.request.GET.get('filter_field')
+    
+    #     if filter_field == "all":
+    #         return Usuario.objects.filter(
+    #             Q(user__username__icontains=query)
+    #         ).order_by("grupo", "user__last_name")
+
+    #     else:
+    #         return Usuario.objects.all()
+
+    # def get_context_data(self, *args, **kwargs):
+    #     context = super().get_context_data(*args,**kwargs)
+    #     context['form'] = FilterForm(initial= {
+    #         'search': self.request.GET.get('search',''),
+    #         'filter_field': self.request.GET.get('filter_field',''),
+    #     })
+
+    #     return context
+
+class API_Alumno(generic.DetailView):
+    template_name = "Alumno/detalle_alumno.html"
+    model = Usuario
+
+##Metodo buscar
+
 #####################################################################################
+
+from django.contrib.admin.models import LogEntry, ADDITION, CHANGE, DELETION
+
+def main(request):
+
+    logs = LogEntry.objects.exclude(change_message="No fields changed.").order_by('-action_time')[:20]
+    logCount = LogEntry.objects.exclude(change_message="No fields changed.").order_by('-action_time')[:20].count()
+
+    return render(request, 'home/historialgeneral.html', {"logs":logs, "logCount":logCount})
       
     

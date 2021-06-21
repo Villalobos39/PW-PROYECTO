@@ -5,6 +5,7 @@
 {% block content%}
 <table class="table">
     <h3 align="center"> <B> TABLA USER </B> </h3>
+    <button type="reset"><a href="{% url 'home:consulta_administrador' %}">Regresar</a></button>
     <hr>   
     <th>ID</th>
     <th> NOMBRE </th>
@@ -22,7 +23,6 @@
     {% endfor %}
 </table>
 <BR>
-<button type="reset"><a href="{% url 'home:consulta_administrador' %}">Regresar</a></button>
 {% endblock %}
 <!-- /. Aqui van los botones.... si lo dejas vacio no aparecera nada -->
 
@@ -35,7 +35,7 @@
     <a href="{% url 'home:consulta_administrador' %}"><i class="fa fa-bar-chart-o"></i>Realizar consulta</a>
 </li>
 <li>
-    <a href="{% url 'home:historial_administrador' %}"><i class="fa fa-qrcode "></i>Historial de actividad</a>
+    <a href="{% url 'home:historial_administrador' %}"><i class="fa fa-qrcode "></i>Imprimir</a>
 </li>
 <li>                             
     <a href="{% url 'home:logout' %}"><i class="fa fa-qrcode "></i>Salir del sistema</a>

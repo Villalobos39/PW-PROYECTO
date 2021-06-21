@@ -7,13 +7,10 @@
 <form method="POST">
     {% csrf_token %}
     {{ form }}
-    <button type="submit">Update</button>
-    <button type="reset">Cancel</button>
+    <BR>
+    <button type="submit">Actualizar</button> <button type="reset"><a href="{% url 'home:tabla_user' %}">Cancelar</a></button>  
 
-</form>
-
-<BR>
-    <button type="reset"><a href="{% url 'home:tabla_escuela' %}">Regresar</a></button>       
+</form>    
 {% endblock %}
 <!-- /. Aqui van los botones.... si lo dejas vacio no aparecera nada -->
 
@@ -26,7 +23,7 @@
     <a href="{% url 'home:consulta_administrador' %}"><i class="fa fa-bar-chart-o"></i>Realizar consulta</a>
 </li>
 <li>
-    <a href="{% url 'home:historial_administrador' %}"><i class="fa fa-qrcode "></i>Historial de actividad</a>
+    <a href="{% url 'home:historial_administrador' %}"><i class="fa fa-qrcode "></i>Imprimir</a>
 </li>
 <li>                             
     <a href="{% url 'home:logout' %}"><i class="fa fa-qrcode "></i>Salir del sistema</a>

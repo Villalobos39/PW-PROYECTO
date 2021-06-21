@@ -3,14 +3,14 @@
 {% block title %}Signup{% endblock title%}
 
 {% block content %}
-<br></br>
+{% comment %} <br></br>
     <form method ="POST">
         {% csrf_token %}
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="form-group">
                     <label>Nombre:</label>
-                    <input class="form-control" type="text" name="first_name">
+                    <input class="form-control" type="text" name="first_name", value = "{{ request.GET.first_name }}">
                 </div>
             </div>
         </div>
@@ -19,7 +19,7 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="form-group">
                     <label>Apellidos:</label>
-                    <input class="form-control" type="text" name="last_name">
+                    <input class="form-control" type="text" name="last_name", value = "{{ request.GET.last_name }}">
                 </div>
             </div>
         </div>
@@ -28,7 +28,7 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="form-group">
                     <label>Nombre de Usuario:</label>
-                    <input class="form-control" type="text" name="username">
+                    <input class="form-control" type="text" name="username", value = "{{ request.GET.username }}">
                 </div>
             </div>
         </div>
@@ -37,7 +37,7 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="form-group">
                     <label>Correo:</label>
-                    <input class="form-control" type="text" name="email">
+                    <input class="form-control" type="text" name="email", value = "{{ request.GET.email }}">
                 </div>
             </div>
         </div>
@@ -46,7 +46,7 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="form-group">
                     <label>Contraseña:</label>
-                    <input class="form-control" type="password" name="password1">
+                    <input class="form-control" type="password" name="password1", value = "{{ request.GET.password1 }}">
                 </div>
             </div>
         </div>
@@ -55,7 +55,7 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="form-group">
                     <label>Confirmar contraseña:</label>
-                    <input class="form-control" type="password" name="password2">
+                    <input class="form-control" type="password" name="password2", value = "{{ request.GET.password2 }}">
                 </div>
             </div>
         </div>
@@ -67,6 +67,36 @@
                 </div>
             </div>
         </div>
+
+        {% if request.GET.password1 != request.GET.password2 %}
+            LAS CONTRASEÑAS NO SON IGUALES
+
+        {% else %}
+
+        {% endif %}
         
-    </form>
+    </form> {% endcomment %}
+<br></br>
+<div class= "container">
+<h2>Registro: </h2>
+<form method = "post">{% csrf_token %}
+    {% for field in signup_form %}
+        <p>
+            {{ field.label_tag }}
+            {{field}}
+
+            {% if field.help_text %}
+                <small style="color: grey;">{{field.help_text}}</small>
+            {% endif %}
+
+            {%for error in field.errors %}
+                <p style="color: red;">{{error}}</p>
+            {% endfor %}
+        </p>
+    {% endfor %}
+    <button type="submit">Crear</button>
+</form>
+</div>
+
+
 {% endblock content %}
